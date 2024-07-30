@@ -7,15 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace POSales
 {
     public partial class MainForm : Form
     {
+        SqlConnection connection = new SqlConnection();
+
+        SqlCommand sqlCommand = new SqlCommand();
+
+        DatabaseConnectionClass connectionClass = new DatabaseConnectionClass();
+
+    
         public MainForm()
         {
             InitializeComponent();
+
+
             customizeDesign();
+
+
+            connection = new SqlConnection(connectionClass.DatabaseConnection());
+
+            connection.Open();
+
+            MessageBox.Show("Database is Connected");
         }
 
         private void panelLogo_Paint(object sender, PaintEventArgs e)
@@ -152,6 +169,11 @@ namespace POSales
         private void btnLogout_Click(object sender, EventArgs e)
         {
             hideSubMenu();
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
