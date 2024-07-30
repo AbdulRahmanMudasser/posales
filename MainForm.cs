@@ -19,19 +19,20 @@ namespace POSales
 
         DatabaseConnectionClass connectionClass = new DatabaseConnectionClass();
 
-    
         public MainForm()
         {
             InitializeComponent();
 
-
+            // Close All the SubMenus When Application Starts
             customizeDesign();
 
-
+            // Establish Connection
             connection = new SqlConnection(connectionClass.DatabaseConnection());
 
+            // Open Connection
             connection.Open();
 
+            // Display if Connection to Database is Opened
             MessageBox.Show("Database is Connected");
         }
 
