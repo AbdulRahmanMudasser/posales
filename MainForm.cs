@@ -13,10 +13,13 @@ namespace POSales
 {
     public partial class MainForm : Form
     {
+        /// HANDLE THE CONNECTION TO DATABASE
         SqlConnection connection = new SqlConnection();
 
+        /// TO EXECUTE SQL COMMANDS AND QUERIES
         SqlCommand sqlCommand = new SqlCommand();
 
+        /// CUSTOM CLASS FOR MANAGING DATABASE CONNECTIONS
         DatabaseConnectionClass connectionClass = new DatabaseConnectionClass();
 
         public MainForm()
@@ -83,14 +86,50 @@ namespace POSales
             {
                 hideSubMenu();
                 subMenu.Visible = true;
-            } 
-            
+            }
+
             else
             {
                 subMenu.Visible = false;
             }
         }
         #endregion panelSlide
+
+        /// VARIABLE THAT HOLDS CURRENTLY ACTIVE FORM
+        private Form activeForm = null;
+
+        /// METHDO TO OPEN CHILD FORM INSIDE MAIN FORM
+        public void openChildrenForm(Form childForm)
+        {
+            // Close the Current Form, If There is an Active Form
+            activeForm?.Close();
+
+            // Set New Child Form as Active Form
+            activeForm = childForm;
+
+            // Set Child Form to be Non-Top Level, Making it Child Control
+            childForm.TopLevel = false;
+
+            // Remove the Border of the Child Form
+            childForm.FormBorderStyle = FormBorderStyle.None;
+
+            // Dock the Child Form to Fill the Parent Container
+            childForm.Dock = DockStyle.Fill;
+
+
+
+            // Add the Child Form to the panelMain Controls Collection
+            panelMain.Controls.Add(childForm);
+
+            // Assign Panel Main's Tag Child Form
+            panelMain.Tag = childForm;
+
+            // Bring the Child Form to Front
+            childForm.BringToFront();
+
+            // Show the Child Form
+            childForm.Show();
+        }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
@@ -114,6 +153,9 @@ namespace POSales
 
         private void btnBrand_Click(object sender, EventArgs e)
         {
+            // Open Brand Form as Child Form
+            openChildrenForm(new BrandForm());
+            
             hideSubMenu();
         }
 

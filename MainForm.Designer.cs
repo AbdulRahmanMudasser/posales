@@ -54,8 +54,6 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelTitle = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelSlide.SuspendLayout();
             this.panelSubSetting.SuspendLayout();
@@ -64,7 +62,6 @@
             this.panelSubProduct.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSlide
@@ -448,33 +445,13 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // panelTitle
-            // 
-            this.panelTitle.Controls.Add(this.lblTitle);
-            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitle.Location = new System.Drawing.Point(194, 0);
-            this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(1068, 62);
-            this.panelTitle.TabIndex = 2;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(405, 19);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1200, 700);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "Title Name";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.White;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(194, 62);
+            this.panelMain.Location = new System.Drawing.Point(194, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1068, 691);
+            this.panelMain.Size = new System.Drawing.Size(1068, 753);
             this.panelMain.TabIndex = 3;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
@@ -485,7 +462,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
             this.ClientSize = new System.Drawing.Size(1262, 753);
             this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.panelTitle);
             this.Controls.Add(this.panelSlide);
             this.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -502,7 +478,6 @@
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelTitle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -511,7 +486,6 @@
 
         private System.Windows.Forms.Panel panelSlide;
         private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Panel panelSubProduct;
@@ -536,7 +510,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblTitle;
     }
 }
 
