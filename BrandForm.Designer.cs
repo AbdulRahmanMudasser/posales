@@ -140,9 +140,9 @@
             this.label1.Location = new System.Drawing.Point(0, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 31);
+            this.label1.Size = new System.Drawing.Size(220, 31);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Manage Brand";
+            this.label1.Text = "Manage Brands";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -168,7 +168,7 @@
             this.btnAddBrand.Name = "btnAddBrand";
             this.btnAddBrand.Size = new System.Drawing.Size(130, 40);
             this.btnAddBrand.TabIndex = 3;
-            this.btnAddBrand.Text = "Add Brand";
+            this.btnAddBrand.Text = "New Brand";
             this.btnAddBrand.UseVisualStyleBackColor = false;
             this.btnAddBrand.Click += new System.EventHandler(this.btnAddBrand_Click);
             // 

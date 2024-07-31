@@ -1,6 +1,6 @@
 ﻿namespace POSales
 {
-    partial class BrandModule
+    partial class CategoryModule
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrandModule));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryModule));
             this.panel1 = new System.Windows.Forms.Panel();
             this.picClose = new System.Windows.Forms.PictureBox();
             this.lblBrandModule = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtBrand = new System.Windows.Forms.TextBox();
-            this.lblBrandName = new System.Windows.Forms.Label();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.lblCategoryName = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblId = new System.Windows.Forms.Label();
@@ -74,9 +74,9 @@
             this.lblBrandModule.Location = new System.Drawing.Point(12, 12);
             this.lblBrandModule.Margin = new System.Windows.Forms.Padding(0);
             this.lblBrandModule.Name = "lblBrandModule";
-            this.lblBrandModule.Size = new System.Drawing.Size(178, 23);
+            this.lblBrandModule.Size = new System.Drawing.Size(209, 23);
             this.lblBrandModule.TabIndex = 0;
-            this.lblBrandModule.Text = "New Brand";
+            this.lblBrandModule.Text = "New Category";
             this.lblBrandModule.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSave
@@ -95,22 +95,22 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtBrand
+            // txtCategory
             // 
-            this.txtBrand.Location = new System.Drawing.Point(241, 122);
-            this.txtBrand.Name = "txtBrand";
-            this.txtBrand.Size = new System.Drawing.Size(553, 30);
-            this.txtBrand.TabIndex = 2;
+            this.txtCategory.Location = new System.Drawing.Point(241, 122);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(553, 30);
+            this.txtCategory.TabIndex = 2;
             // 
-            // lblBrandName
+            // lblCategoryName
             // 
-            this.lblBrandName.AutoSize = true;
-            this.lblBrandName.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrandName.Location = new System.Drawing.Point(40, 125);
-            this.lblBrandName.Name = "lblBrandName";
-            this.lblBrandName.Size = new System.Drawing.Size(120, 22);
-            this.lblBrandName.TabIndex = 3;
-            this.lblBrandName.Text = "Brand Name";
+            this.lblCategoryName.AutoSize = true;
+            this.lblCategoryName.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoryName.Location = new System.Drawing.Point(40, 125);
+            this.lblCategoryName.Name = "lblCategoryName";
+            this.lblCategoryName.Size = new System.Drawing.Size(152, 22);
+            this.lblCategoryName.TabIndex = 3;
+            this.lblCategoryName.Text = "Category Name";
             // 
             // btnUpdate
             // 
@@ -149,12 +149,12 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(40, 233);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(82, 21);
+            this.lblId.Size = new System.Drawing.Size(113, 21);
             this.lblId.TabIndex = 6;
-            this.lblId.Text = "brand id";
+            this.lblId.Text = "category id";
             this.lblId.Visible = false;
             // 
-            // BrandModule
+            // CategoryModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -163,16 +163,16 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.lblBrandName);
-            this.Controls.Add(this.txtBrand);
+            this.Controls.Add(this.lblCategoryName);
+            this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "BrandModule";
+            this.Name = "CategoryModule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BrandModule";
+            this.Text = "CategroyModule";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
             this.ResumeLayout(false);
@@ -185,9 +185,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox picClose;
         private System.Windows.Forms.Label lblBrandModule;
-        private System.Windows.Forms.Label lblBrandName;
+        private System.Windows.Forms.Label lblCategoryName;
         public System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.TextBox txtBrand;
+        public System.Windows.Forms.TextBox txtCategory;
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Label lblId;

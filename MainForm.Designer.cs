@@ -330,7 +330,7 @@
             this.btnBrand.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnBrand.Size = new System.Drawing.Size(168, 45);
             this.btnBrand.TabIndex = 5;
-            this.btnBrand.Text = "Brand";
+            this.btnBrand.Text = "Brands";
             this.btnBrand.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBrand.UseVisualStyleBackColor = true;
             this.btnBrand.Click += new System.EventHandler(this.btnBrand_Click);
@@ -347,7 +347,7 @@
             this.btnCategory.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnCategory.Size = new System.Drawing.Size(168, 45);
             this.btnCategory.TabIndex = 4;
-            this.btnCategory.Text = "Category";
+            this.btnCategory.Text = "Categories";
             this.btnCategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCategory.UseVisualStyleBackColor = true;
             this.btnCategory.Click += new System.EventHandler(this.btnCategory_Click);

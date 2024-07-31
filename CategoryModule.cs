@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace POSales
 {
-    public partial class BrandModule : Form
+    public partial class CategoryModule : Form
     {
         /// HANDLE THE CONNECTION TO DATABASE
         SqlConnection connection = new SqlConnection();
@@ -23,9 +23,9 @@ namespace POSales
         DatabaseConnectionClass connectionClass = new DatabaseConnectionClass();
 
         /// BRANDFORM OBJECT TO ACCESS LOADBRANDS METHOD
-        BrandForm brandForm;
+        CategoryFrom categoryForm;
 
-        public BrandModule(BrandForm brandForm)
+        public CategoryModule(CategoryFrom categoryForm)
         {
             InitializeComponent();
 
@@ -33,7 +33,7 @@ namespace POSales
             connection = new SqlConnection(connectionClass.DatabaseConnection());
 
             // Assign Received brandForm Argument to Global Variable
-            this.brandForm = brandForm;
+            this.categoryForm = categoryForm;
         }
 
         /// CANCEL BUTTON
@@ -52,38 +52,37 @@ namespace POSales
         /// SAVE BUTTON
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // To Insert Brand Name to Brand Table
+            // To Insert Category Name to Brand Table
             try
             {
-
-                if (MessageBox.Show("Save This Brand?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Save This Category?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     // Open Connection
                     connection.Open();
 
-                    // SQL Command to Insert a New Brand Into the Brand Table
-                    sqlCommand = new SqlCommand("INSERT INTO tbBrand (brand) VALUES (@brand)", connection);
+                    // SQL Command to Insert a New Category Into the Brand Table
+                    sqlCommand = new SqlCommand("INSERT INTO tbCategory (category) VALUES (@category)", connection);
 
-                    // Add the brand Parameter to the SQL Command With the Value from the txtBrand TextBox
-                    sqlCommand.Parameters.AddWithValue("@brand", txtBrand.Text);
+                    // Add the brand Parameter to the SQL Command With the Value from the txtCategory TextBox
+                    sqlCommand.Parameters.AddWithValue("@category", txtCategory.Text);
 
-                    // Execute the SQL Command to Insert the New Brand Into the Database
+                    // Execute the SQL Command to Insert the New Category Into the Database
                     sqlCommand.ExecuteNonQuery();
 
                     // Close the Database Connection
                     connection.Close();
 
-                    // Display User that the Brand was Added Successfully
-                    MessageBox.Show("Brand Added Successfully", "POSales");
+                    // Display User that the Category was Added Successfully
+                    MessageBox.Show("Category Added Successfully", "POSales");
 
                     // Clear TextBox
-                    txtBrand.Clear();
+                    txtCategory.Clear();
 
                     // Foucs TextBox
-                    txtBrand.Focus();
+                    txtCategory.Focus();
 
-                    // Load Brands
-                    brandForm.loadBrands();
+                    // Load Categories
+                    categoryForm.loadCategories();
                 }
             }
             catch (Exception ex)
@@ -95,38 +94,38 @@ namespace POSales
         /// CLEAR TEXTBOX
         private void clear()
         {
-            txtBrand.Clear();
+            txtCategory.Clear();
 
-            txtBrand.Focus();
+            txtCategory.Focus();
         }
 
         /// UPDATE BUTTON
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // To Update Brand Name in Brand Table
+            // To Update Brand Name in Category Table
             try
             {
-                if (MessageBox.Show("Update This Brand?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Update This Category?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     // Open Connection
                     connection.Open();
 
-                    // SQL Command to Update Brand in Brand Table with Specified id
-                    sqlCommand = new SqlCommand("UPDATE tbBrand SET brand = @brand WHERE id LIKE'" + lblId.Text + "'", connection);
+                    // SQL Command to Update Category in Category Table with Specified id
+                    sqlCommand = new SqlCommand("UPDATE tbCategory SET category = @category WHERE id LIKE'" + lblId.Text + "'", connection);
 
-                    // Add the Updated brand Parameter to the SQL Command With the Value from the txtBrand TextBox
-                    sqlCommand.Parameters.AddWithValue("@brand", txtBrand.Text);
+                    // Add the Updated category Parameter to the SQL Command With the Value from the txtCategory TextBox
+                    sqlCommand.Parameters.AddWithValue("@category", txtCategory.Text);
 
-                    // Execute the SQL Command to Update Brand Name in the Database
+                    // Execute the SQL Command to Update Category Name in the Database
                     sqlCommand.ExecuteNonQuery();
 
                     // Close the Database Connection
                     connection.Close();
 
-                    // Display User that the Brand was Added Successfully
-                    MessageBox.Show("Brand Name Updated Successfully", "POSales");
+                    // Display User that the Category was Added Successfully
+                    MessageBox.Show("Category Name Updated Successfully", "POSales");
 
-                    // To Close Window After Updating Brand Name
+                    // To Close Window After Updating Category Name
                     this.Dispose();
                 }
             }
