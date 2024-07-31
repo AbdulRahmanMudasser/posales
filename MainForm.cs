@@ -116,8 +116,6 @@ namespace POSales
             // Dock the Child Form to Fill the Parent Container
             childForm.Dock = DockStyle.Fill;
 
-
-
             // Add the Child Form to the panelMain Controls Collection
             panelMain.Controls.Add(childForm);
 
@@ -148,6 +146,9 @@ namespace POSales
 
         private void btnCategory_Click(object sender, EventArgs e)
         {
+            // Open Category Form as Child Form
+            openChildrenForm(new CategoryFrom());
+
             hideSubMenu();
         }
 

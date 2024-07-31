@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryModule.Designer.cs">
+      <DependentUpon>CategoryModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryForm.Designer.cs">
+      <DependentUpon>CategoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrandForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +82,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CategoryModule.resx">
+      <DependentUpon>CategoryModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CategoryForm.resx">
+      <DependentUpon>CategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BrandForm.resx">
       <DependentUpon>BrandForm.cs</DependentUpon>
     </EmbeddedResource>
