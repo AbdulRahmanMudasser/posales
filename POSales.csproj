@@ -58,6 +58,9 @@
     <Compile Include="BrandModule.Designer.cs">
       <DependentUpon>BrandModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Painter\CustomPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DatabaseConnectionClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
