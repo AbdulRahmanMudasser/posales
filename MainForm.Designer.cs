@@ -364,7 +364,7 @@
             this.btnProductList.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnProductList.Size = new System.Drawing.Size(168, 45);
             this.btnProductList.TabIndex = 3;
-            this.btnProductList.Text = "List";
+            this.btnProductList.Text = "List of Products";
             this.btnProductList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductList.UseVisualStyleBackColor = true;
             this.btnProductList.Click += new System.EventHandler(this.btnProductList_Click);

@@ -141,6 +141,9 @@ namespace POSales
 
         private void btnProductList_Click(object sender, EventArgs e)
         {
+            // Open Product Form as Child Form
+            openChildrenForm(new ProductForm());
+
             hideSubMenu();
         }
 
