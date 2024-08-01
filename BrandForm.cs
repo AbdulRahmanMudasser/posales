@@ -49,7 +49,10 @@ namespace POSales
             connection.Open();
 
             // SQL Command to Select All Records from tbBrand Table, Ordered By brand Column
-            sqlCommand = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", connection);
+            // sqlCommand = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", connection);
+
+            // For Searching Brand, Also for Loading Brands
+            sqlCommand = new SqlCommand("SELECT * FROM tbBrand WHERE brand LIKE '%" + txtSearchBrand.Text + "%'", connection);
 
             // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
             dataReader = sqlCommand.ExecuteReader();
@@ -150,6 +153,11 @@ namespace POSales
             }
 
             // Load Brands
+            loadBrands();
+        }
+
+        private void txtSearchBrand_TextChanged(object sender, EventArgs e)
+        {
             loadBrands();
         }
     }

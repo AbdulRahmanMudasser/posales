@@ -39,6 +39,7 @@
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearchBrand = new MetroFramework.Controls.MetroTextBox();
             this.btnAddBrand = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).BeginInit();
             this.panel1.SuspendLayout();
@@ -70,7 +71,7 @@
             this.Delete});
             this.dgvBrand.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBrand.EnableHeadersVisualStyles = false;
-            this.dgvBrand.Location = new System.Drawing.Point(0, 47);
+            this.dgvBrand.Location = new System.Drawing.Point(0, 80);
             this.dgvBrand.Margin = new System.Windows.Forms.Padding(0);
             this.dgvBrand.Name = "dgvBrand";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -85,7 +86,7 @@
             this.dgvBrand.RowHeadersWidth = 51;
             this.dgvBrand.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvBrand.RowTemplate.Height = 24;
-            this.dgvBrand.Size = new System.Drawing.Size(1000, 553);
+            this.dgvBrand.Size = new System.Drawing.Size(1000, 520);
             this.dgvBrand.TabIndex = 2;
             this.dgvBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_CellContentClick);
             // 
@@ -137,10 +138,10 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(0, 9);
+            this.label1.Location = new System.Drawing.Point(0, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(220, 31);
+            this.label1.Size = new System.Drawing.Size(228, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "Manage Brands";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -148,13 +149,58 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
+            this.panel1.Controls.Add(this.txtSearchBrand);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 47);
+            this.panel1.Size = new System.Drawing.Size(1000, 80);
             this.panel1.TabIndex = 0;
+            // 
+            // txtSearchBrand
+            // 
+            this.txtSearchBrand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchBrand.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtSearchBrand.CustomButton.Image = null;
+            this.txtSearchBrand.CustomButton.Location = new System.Drawing.Point(372, 2);
+            this.txtSearchBrand.CustomButton.Name = "";
+            this.txtSearchBrand.CustomButton.Size = new System.Drawing.Size(25, 25);
+            this.txtSearchBrand.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSearchBrand.CustomButton.TabIndex = 1;
+            this.txtSearchBrand.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSearchBrand.CustomButton.UseSelectable = true;
+            this.txtSearchBrand.CustomButton.Visible = false;
+            this.txtSearchBrand.DisplayIcon = true;
+            this.txtSearchBrand.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.txtSearchBrand.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
+            this.txtSearchBrand.ForeColor = System.Drawing.Color.Black;
+            this.txtSearchBrand.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearchBrand.Icon")));
+            this.txtSearchBrand.Lines = new string[0];
+            this.txtSearchBrand.Location = new System.Drawing.Point(588, 24);
+            this.txtSearchBrand.Margin = new System.Windows.Forms.Padding(0);
+            this.txtSearchBrand.MaxLength = 32767;
+            this.txtSearchBrand.Name = "txtSearchBrand";
+            this.txtSearchBrand.PasswordChar = '\0';
+            this.txtSearchBrand.PromptText = "Search Brand";
+            this.txtSearchBrand.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSearchBrand.SelectedText = "";
+            this.txtSearchBrand.SelectionLength = 0;
+            this.txtSearchBrand.SelectionStart = 0;
+            this.txtSearchBrand.ShortcutsEnabled = true;
+            this.txtSearchBrand.Size = new System.Drawing.Size(400, 30);
+            this.txtSearchBrand.TabIndex = 5;
+            this.txtSearchBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearchBrand.UseCustomBackColor = true;
+            this.txtSearchBrand.UseCustomForeColor = true;
+            this.txtSearchBrand.UseSelectable = true;
+            this.txtSearchBrand.WaterMark = "Search Brand";
+            this.txtSearchBrand.WaterMarkColor = System.Drawing.Color.Black;
+            this.txtSearchBrand.WaterMarkFont = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchBrand.TextChanged += new System.EventHandler(this.txtSearchBrand_TextChanged);
             // 
             // btnAddBrand
             // 
@@ -204,5 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private MetroFramework.Controls.MetroTextBox txtSearchBrand;
     }
 }

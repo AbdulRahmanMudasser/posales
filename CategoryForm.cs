@@ -49,7 +49,10 @@ namespace POSales
             connection.Open();
 
             // SQL Command to Select All Records from tbCategory Table, Ordered By brand Column
-            sqlCommand = new SqlCommand("SELECT * FROM tbCategory ORDER BY category", connection);
+            // sqlCommand = new SqlCommand("SELECT * FROM tbCategory ORDER BY category", connection);
+
+            // For Searching Category, Also for Loading Category
+            sqlCommand = new SqlCommand("SELECT * FROM tbCategory WHERE category LIKE '%" + txtSearchCategory.Text + "%'", connection);
 
             // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
             dataReader = sqlCommand.ExecuteReader();
@@ -150,6 +153,11 @@ namespace POSales
             }
 
             // Load Categories
+            loadCategories();
+        }
+
+        private void txtSearchCategory_TextChanged(object sender, EventArgs e)
+        {
             loadCategories();
         }
     }
