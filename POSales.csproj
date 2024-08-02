@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SettingsUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsUserForm.Designer.cs">
+      <DependentUpon>SettingsUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SettingsUserForm.resx">
+      <DependentUpon>SettingsUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
