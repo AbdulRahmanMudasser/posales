@@ -180,6 +180,9 @@ namespace POSales
 
         private void btnSupplier_Click(object sender, EventArgs e)
         {
+            // Open Product Form as Child Form
+            openChildrenForm(new SupplierForm());
+
             hideSubMenu();
         }
 

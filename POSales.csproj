@@ -55,6 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierModule.Designer.cs">
+      <DependentUpon>SupplierModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductModule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +115,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplierModule.resx">
+      <DependentUpon>SupplierModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductModule.resx">
       <DependentUpon>ProductModule.cs</DependentUpon>
     </EmbeddedResource>
