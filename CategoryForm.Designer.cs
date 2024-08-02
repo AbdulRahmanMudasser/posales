@@ -185,7 +185,6 @@
             this.txtSearchCategory.MaxLength = 32767;
             this.txtSearchCategory.Name = "txtSearchCategory";
             this.txtSearchCategory.PasswordChar = '\0';
-            this.txtSearchCategory.PromptText = "Search Category";
             this.txtSearchCategory.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchCategory.SelectedText = "";
             this.txtSearchCategory.SelectionLength = 0;

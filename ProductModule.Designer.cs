@@ -104,7 +104,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(432, 468);
+            this.btnSave.Location = new System.Drawing.Point(432, 478);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(104, 40);
             this.btnSave.TabIndex = 1;
@@ -137,7 +137,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(569, 468);
+            this.btnUpdate.Location = new System.Drawing.Point(569, 478);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(104, 40);
             this.btnUpdate.TabIndex = 4;
@@ -153,7 +153,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(706, 468);
+            this.btnCancel.Location = new System.Drawing.Point(706, 478);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 40);
             this.btnCancel.TabIndex = 5;
@@ -173,9 +173,9 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(276, 271);
+            this.txtDescription.Location = new System.Drawing.Point(199, 271);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(534, 30);
+            this.txtDescription.Size = new System.Drawing.Size(611, 30);
             this.txtDescription.TabIndex = 10;
             // 
             // lblBrand
@@ -201,17 +201,17 @@
             // cboBrand
             // 
             this.cboBrand.FormattingEnabled = true;
-            this.cboBrand.Location = new System.Drawing.Point(276, 333);
+            this.cboBrand.Location = new System.Drawing.Point(199, 333);
             this.cboBrand.Name = "cboBrand";
-            this.cboBrand.Size = new System.Drawing.Size(534, 29);
+            this.cboBrand.Size = new System.Drawing.Size(611, 29);
             this.cboBrand.TabIndex = 16;
             // 
             // cboCategory
             // 
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(276, 394);
+            this.cboCategory.Location = new System.Drawing.Point(199, 394);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(534, 29);
+            this.cboCategory.Size = new System.Drawing.Size(611, 29);
             this.cboCategory.TabIndex = 17;
             // 
             // label1
@@ -336,7 +336,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(850, 530);
+            this.ClientSize = new System.Drawing.Size(850, 540);
             this.Controls.Add(this.txtWeight);
             this.Controls.Add(this.nupReOrder);
             this.Controls.Add(this.label3);
