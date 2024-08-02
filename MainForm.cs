@@ -208,6 +208,9 @@ namespace POSales
 
         private void btnUser_Click(object sender, EventArgs e)
         {
+            // Open User Settings Form as Child Form
+            openChildrenForm(new SettingsUserForm());
+
             hideSubMenu();
         }
 
