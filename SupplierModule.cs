@@ -153,37 +153,5 @@ namespace POSales
                 MessageBox.Show(ex.Message);
             }
         }
-
-        /// LOAD CATEGORIES
-        public void loadCategories()
-        {
-            // Clear Existing Items in ComboBox
-            // cboCategory.Items.Clear();
-
-            // Set Data Source to Category Table
-            // cboCategory.DataSource = connectionClass.getTable("SELECT * FROM tbCategory");
-
-            // Display Category Name
-            // cboCategory.DisplayMember = "category";
-
-            // Use Category ID as Value
-            // cboCategory.ValueMember = "id";
-        }
-
-        /// LOAD BRANDS
-        public void loadBrands()
-        {
-            // Clear Existing Items in ComboBox
-            // cboBrand.Items.Clear();
-
-            // Set Data Source to Brand Table
-            // cboBrand.DataSource = connectionClass.getTable("SELECT * FROM tbBrand");
-
-            // Display Brand Name
-            // cboBrand.DisplayMember = "brand";
-
-            // Use Brand ID as Value
-            // cboBrand.ValueMember = "id";
-        }
     }
 }

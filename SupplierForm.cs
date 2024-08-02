@@ -48,11 +48,10 @@ namespace POSales
             // Open Database Connection
             connection.Open();
 
-            // Search By Supplier Name, Phone Number, Email, Fax Number, Address, Also for Loading Suppliers
-            // sqlCommand = new SqlCommand("SELECT * FROM tbSupplier WHERE (supplierName LIKE '%" + txtSearchSupplier.Text + "%' OR phoneNumber LIKE '%" + txtSearchSupplier.Text + "%' OR email LIKE '%" + txtSearchSupplier.Text + "%' OR faxNumber LIKE '%" + txtSearchSupplier.Text + "%' OR address LIKE '%" + txtSearchSupplier.Text + "%')", connection);
-
+            // Search By Supplier Name, Phone Number, Email, Fax Number, Address, Also for Loading Supplier
             sqlCommand = new SqlCommand("SELECT * FROM tbSupplier WHERE (supplierName LIKE @searchQuery OR phoneNumber LIKE @searchQuery OR email LIKE @searchQuery OR faxNumber LIKE @searchQuery OR address LIKE @searchQuery)", connection);
 
+            // Add the supplier Parameter to the SQL Command With the Value from the txtSearchSupplier TextBox
             sqlCommand.Parameters.AddWithValue("@searchQuery", "%" + txtSearchSupplier.Text + "%");
 
             // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
@@ -81,6 +80,7 @@ namespace POSales
             this.Dispose();
         }
 
+        /// ADD NEW SUPPLIER
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             // To Edit Supplier in Supplier Table
@@ -96,6 +96,7 @@ namespace POSales
             supplierModule.ShowDialog();
         }
 
+        /// EDIT & DELETE SUPPLIER
         private void dgvSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Update & Delete Supplier By Cell Click from in tbProduct
@@ -172,6 +173,7 @@ namespace POSales
             loadSuppliers();
         }
 
+        /// SEARCH SUPPLIER
         private void txtSearchSupplier_TextChanged(object sender, EventArgs e)
         {
             loadSuppliers();
