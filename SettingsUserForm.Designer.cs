@@ -113,7 +113,6 @@
             this.txtSearchUserSettings.MaxLength = 32767;
             this.txtSearchUserSettings.Name = "txtSearchUserSettings";
             this.txtSearchUserSettings.PasswordChar = '\0';
-            this.txtSearchUserSettings.PromptText = "Search";
             this.txtSearchUserSettings.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchUserSettings.SelectedText = "";
             this.txtSearchUserSettings.SelectionLength = 0;
