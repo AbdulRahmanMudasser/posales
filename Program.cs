@@ -16,7 +16,7 @@ namespace POSales
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StockInModule());
+            Application.Run(new ProductStockIn());
         }
     }
 }
