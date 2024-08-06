@@ -186,7 +186,6 @@
             this.txtSearchProduct.WaterMarkColor = System.Drawing.Color.Black;
             this.txtSearchProduct.WaterMarkFont = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.txtSearchProduct_TextChanged);
-            this.txtSearchProduct.Click += new System.EventHandler(this.txtSearchProduct_Click);
             // 
             // AddToCart
             // 

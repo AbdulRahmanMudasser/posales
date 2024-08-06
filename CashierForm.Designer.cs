@@ -293,7 +293,6 @@
             this.panelLogo.Name = "panelLogo";
             this.panelLogo.Size = new System.Drawing.Size(210, 181);
             this.panelLogo.TabIndex = 1;
-            this.panelLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLogo_Paint);
             // 
             // lblCashierName
             // 

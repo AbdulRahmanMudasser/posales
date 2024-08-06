@@ -146,7 +146,6 @@
             this.txtSearchUserSettings.MaxLength = 32767;
             this.txtSearchUserSettings.Name = "txtSearchUserSettings";
             this.txtSearchUserSettings.PasswordChar = '\0';
-            this.txtSearchUserSettings.PromptText = "Search";
             this.txtSearchUserSettings.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchUserSettings.SelectedText = "";
             this.txtSearchUserSettings.SelectionLength = 0;
@@ -161,7 +160,6 @@
             this.txtSearchUserSettings.WaterMark = "Search";
             this.txtSearchUserSettings.WaterMarkColor = System.Drawing.Color.Black;
             this.txtSearchUserSettings.WaterMarkFont = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchUserSettings.Click += new System.EventHandler(this.txtSearchUserSettings_Click);
             // 
             // metroTabPage3
             // 
@@ -299,7 +297,6 @@
             this.label5.Size = new System.Drawing.Size(149, 21);
             this.label5.TabIndex = 44;
             this.label5.Text = "Contact Person";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtContactPerson
             // 
@@ -320,7 +317,6 @@
             this.label6.Size = new System.Drawing.Size(77, 21);
             this.label6.TabIndex = 42;
             this.label6.Text = "Supplier";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // dtpStockInDate
             // 
@@ -574,7 +570,6 @@
             this.btnAccountSave.TabIndex = 43;
             this.btnAccountSave.Text = "Save";
             this.btnAccountSave.UseVisualStyleBackColor = false;
-            this.btnAccountSave.Click += new System.EventHandler(this.btnAccountSave_Click);
             // 
             // cboRole
             // 

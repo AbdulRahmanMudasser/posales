@@ -39,39 +39,50 @@ namespace POSales
         /// DISPLAY DATA RETREIVE FROM tbProduct to dgvProduct
         public void loadProducts()
         {
-            // To Keep Track of Row Number
-            int i = 0;
-
-            // Clear All Rows from DataGridView to Prepare for Fresh Data
-            dgvProduct.Rows.Clear();
-
-            // Open Database Connection
-            connection.Open();
-
-            // SQL Command to Select All Records from tbProduct Table, Also for Searching
-            // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
-
-            // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
-            sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
-
-            // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
-            dataReader = sqlCommand.ExecuteReader();
-
-            // Iterate through the DataReader to Read Each Row of Data
-            while (dataReader.Read())
+            try
             {
-                // Increment Counter for Each Row
-                i++;
+                // To Keep Track of Row Number
+                int i = 0;
 
-                // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString());
+                // Clear All Rows from DataGridView to Prepare for Fresh Data
+                dgvProduct.Rows.Clear();
+
+                // Open Database Connection
+                connection.Open();
+
+                // SQL Command to Select All Records from tbProduct Table, Also for Searching
+                // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
+
+                // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
+                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
+
+                // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
+                dataReader = sqlCommand.ExecuteReader();
+
+                // Iterate through the DataReader to Read Each Row of Data
+                while (dataReader.Read())
+                {
+                    // Increment Counter for Each Row
+                    i++;
+
+                    // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
+                    dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString());
+                }
+
+                // Close DataReader After Reading All Data
+                dataReader.Close();
+
+                // Close Database Connection
+                connection.Close();
             }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
 
-            // Close DataReader After Reading All Data
-            dataReader.Close();
-
-            // Close Database Connection
-            connection.Close();
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Product" + ex.Message);
+            }
         }
 
         /// CLOSE WINDOW
@@ -102,47 +113,58 @@ namespace POSales
 
             if (databaseOperation == "Edit")
             {
-                // To Edit Category Name in Category Table
-                ProductModule productModule= new ProductModule(this);
+                try
+                {
+                    // To Edit Category Name in Category Table
+                    ProductModule productModule = new ProductModule(this);
 
-                // Set, With the Value from Selected Row's ProductCode Column In DataGridView
-                productModule.txtProductCode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    // Set, With the Value from Selected Row's ProductCode Column In DataGridView
+                    productModule.txtProductCode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
 
-                // Set, With the Value from Selected Row's Barcode Column In DataGridView
-                productModule.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    // Set, With the Value from Selected Row's Barcode Column In DataGridView
+                    productModule.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-                // Set, With the Value from Selected Row's Description Column In DataGridView
-                productModule.txtDescription.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    // Set, With the Value from Selected Row's Description Column In DataGridView
+                    productModule.txtDescription.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-                // Set, With the Value from Selected Row's Brand Column In DataGridView
-                productModule.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    // Set, With the Value from Selected Row's Brand Column In DataGridView
+                    productModule.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                // Set, With the Value from Selected Row's Category Column In DataGridView
-                productModule.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
+                    // Set, With the Value from Selected Row's Category Column In DataGridView
+                    productModule.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-                // Set, With the Value from Selected Row's Price Column In DataGridView
-                productModule.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+                    // Set, With the Value from Selected Row's Price Column In DataGridView
+                    productModule.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
 
-                // Set, With the Value from Selected Row's Quantity Column In DataGridView
-                productModule.nupQuantity.Text = dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
+                    // Set, With the Value from Selected Row's Quantity Column In DataGridView
+                    productModule.nupQuantity.Text = dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
 
-                // Set, With the Value from Selected Row's ReOrder Level Column In DataGridView
-                productModule.nupReOrder.Text = dgvProduct.Rows[e.RowIndex].Cells[8].Value.ToString();
+                    // Set, With the Value from Selected Row's ReOrder Level Column In DataGridView
+                    productModule.nupReOrder.Text = dgvProduct.Rows[e.RowIndex].Cells[8].Value.ToString();
 
-                // Set, With the Value from Selected Row's Weight Column In DataGridView
-                productModule.txtWeight.Text = dgvProduct.Rows[e.RowIndex].Cells[9].Value.ToString();
+                    // Set, With the Value from Selected Row's Weight Column In DataGridView
+                    productModule.txtWeight.Text = dgvProduct.Rows[e.RowIndex].Cells[9].Value.ToString();
 
-                // Disable, Since We are Editing an Existing Product
-                productModule.btnSave.Enabled = false;
+                    // Disable, Since We are Editing an Existing Product
+                    productModule.btnSave.Enabled = false;
 
-                // Set Background Color to White
-                productModule.btnSave.BackColor = SystemColors.Window;
+                    // Set Background Color to White
+                    productModule.btnSave.BackColor = SystemColors.Window;
 
-                // Enable, To Allow Updating Product Details
-                productModule.btnUpdate.Enabled = true;
+                    // Enable, To Allow Updating Product Details
+                    productModule.btnUpdate.Enabled = true;
 
-                // Display CategoryForm as a Dialog
-                productModule.ShowDialog();
+                    // Display CategoryForm as a Dialog
+                    productModule.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    // Close Connection
+                    connection.Close();
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception has Occurred while Editing Product" + ex.Message);
+                }
             }
             else if (databaseOperation == "Delete")
             {
@@ -169,7 +191,11 @@ namespace POSales
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    // Close Connection
+                    connection.Close();
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception has Occurred while Deleting Product" + ex.Message);
                 }
             }
 

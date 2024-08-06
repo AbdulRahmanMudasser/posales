@@ -92,7 +92,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Saving Supplier" + ex.Message);
             }
         }
 
@@ -150,7 +154,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while UpdatingS Supplier" + ex.Message);
             }
         }
     }
