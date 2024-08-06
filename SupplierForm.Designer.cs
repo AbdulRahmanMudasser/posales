@@ -153,6 +153,7 @@
             this.txtSearchSupplier.MaxLength = 32767;
             this.txtSearchSupplier.Name = "txtSearchSupplier";
             this.txtSearchSupplier.PasswordChar = '\0';
+            this.txtSearchSupplier.PromptText = "Search Supplier";
             this.txtSearchSupplier.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchSupplier.SelectedText = "";
             this.txtSearchSupplier.SelectionLength = 0;
@@ -201,6 +202,7 @@
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column7.Visible = false;
             this.Column7.Width = 56;
             // 
             // Category
@@ -237,18 +239,18 @@
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Phone";
+            this.Column4.HeaderText = "Phone No.";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 96;
+            this.Column4.Width = 131;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.HeaderText = "Fax";
+            this.Column6.HeaderText = "Fax No.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
-            this.Column6.Width = 69;
+            this.Column6.Width = 104;
             // 
             // Edit
             // 
