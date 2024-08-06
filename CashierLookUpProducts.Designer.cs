@@ -159,7 +159,6 @@
             this.txtSearchProduct.MaxLength = 32767;
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.PasswordChar = '\0';
-            this.txtSearchProduct.PromptText = "Search Products";
             this.txtSearchProduct.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchProduct.SelectedText = "";
             this.txtSearchProduct.SelectionLength = 0;

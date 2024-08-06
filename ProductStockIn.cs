@@ -25,10 +25,10 @@ namespace POSales
         /// TO READ DATA RETRIEVED FROM DATABASE
         SqlDataReader dataReader;
 
-        /// CASHIER FORM
-        CashierForm cashierForm;
+        /// STOCK IN FORM
+        StockInModule stockInModule;
 
-        public ProductStockIn()
+        public ProductStockIn(StockInModule stockInModule)
         {
             InitializeComponent();
 
@@ -38,9 +38,10 @@ namespace POSales
             // Load Categories to DataGridView
             loadProducts();
 
-            // Assign Received cashierForm Argument to Global Variable
-            // this.cashierForm = cashierForm;
+            // Assign Received stockInModule Argument to Global Variable
+            this.stockInModule = stockInModule;
 
+            // Load Products
             loadProducts();
         }
 
@@ -87,11 +88,47 @@ namespace POSales
 
             if (databaseOperation == "AddToCart")
             {
-                if (MessageBox.Show("Save This Product?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (stockInModule.txtStockInBy.Text == string.Empty)
+                {
+                    // Display MessageBox if Stock In By TextBox is Empty
+                    MessageBox.Show("Enter Stock In By Name", "", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+                    this.Dispose();
+
+                    // Focus on Stock In By TextBox
+                    stockInModule.txtStockInBy.Focus();
+
+                    return;
+                }
+                
+                if (MessageBox.Show("Add This Product?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
+                        // Open Database Connection
+                        connection.Open();
 
+                        // SQL Command to Insert a New Stock In Into the StockIn Table
+                        sqlCommand = new SqlCommand("INSERT INTO tbStockIn (referenceNumber, productCode, sDate, stockInBy, supplierId) VALUES (@referenceNumber, @productCode, @sDate, @stockInBy, @supplierId)", connection);
+
+                        // Add the stock in Parameters to the SQL Command With the Value
+                        sqlCommand.Parameters.AddWithValue("@referenceNumber", stockInModule.txtReferenceNumber.Text);
+                        sqlCommand.Parameters.AddWithValue("@productCode", dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@sDate", stockInModule.dtpStockInDate.Value);
+                        sqlCommand.Parameters.AddWithValue("@stockInBy", stockInModule.txtStockInBy.Text);
+                        sqlCommand.Parameters.AddWithValue("@supplierId", stockInModule.lblId.Text);
+
+                        // Execute the SQL Command to Insert the New Category Into the Database
+                        sqlCommand.ExecuteNonQuery();
+
+                        // Close the Database Connection
+                        connection.Close();
+
+                        // Dispose Form
+                        this.Dispose();
+
+                        // Load Stock In
+                        stockInModule.loadStockIn();
                     }
                     catch (Exception ex)
                     {
@@ -99,8 +136,6 @@ namespace POSales
                     }
                 }
             }
-            // Load Products
-            loadProducts();
         }
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
@@ -112,6 +147,11 @@ namespace POSales
         private void picClose_Click_1(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void txtSearchProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
