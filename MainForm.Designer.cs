@@ -252,7 +252,7 @@
             this.btnSupplier.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.btnSupplier.Size = new System.Drawing.Size(199, 45);
             this.btnSupplier.TabIndex = 6;
-            this.btnSupplier.Text = "   Supplier";
+            this.btnSupplier.Text = "   Suppliers";
             this.btnSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSupplier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSupplier.UseVisualStyleBackColor = true;
@@ -415,7 +415,7 @@
             this.btnProduct.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.btnProduct.Size = new System.Drawing.Size(199, 45);
             this.btnProduct.TabIndex = 2;
-            this.btnProduct.Text = "   Product";
+            this.btnProduct.Text = "   Products";
             this.btnProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProduct.UseVisualStyleBackColor = true;
