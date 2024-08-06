@@ -276,13 +276,16 @@
             this.btnStockAdjustment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStockAdjustment.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStockAdjustment.ForeColor = System.Drawing.Color.White;
+            this.btnStockAdjustment.Image = ((System.Drawing.Image)(resources.GetObject("btnStockAdjustment.Image")));
+            this.btnStockAdjustment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockAdjustment.Location = new System.Drawing.Point(0, 45);
             this.btnStockAdjustment.Name = "btnStockAdjustment";
             this.btnStockAdjustment.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnStockAdjustment.Size = new System.Drawing.Size(199, 45);
             this.btnStockAdjustment.TabIndex = 4;
-            this.btnStockAdjustment.Text = "Adjustment";
+            this.btnStockAdjustment.Text = "   Adjustment";
             this.btnStockAdjustment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockAdjustment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStockAdjustment.UseVisualStyleBackColor = true;
             this.btnStockAdjustment.Click += new System.EventHandler(this.btnStockAdjustment_Click);
             // 
@@ -293,13 +296,16 @@
             this.btnStockEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStockEntry.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStockEntry.ForeColor = System.Drawing.Color.White;
+            this.btnStockEntry.Image = ((System.Drawing.Image)(resources.GetObject("btnStockEntry.Image")));
+            this.btnStockEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockEntry.Location = new System.Drawing.Point(0, 0);
             this.btnStockEntry.Name = "btnStockEntry";
             this.btnStockEntry.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnStockEntry.Size = new System.Drawing.Size(199, 45);
             this.btnStockEntry.TabIndex = 3;
-            this.btnStockEntry.Text = "Entry";
+            this.btnStockEntry.Text = "   Entry";
             this.btnStockEntry.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockEntry.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStockEntry.UseVisualStyleBackColor = true;
             this.btnStockEntry.Click += new System.EventHandler(this.btnStockEntry_Click);
             // 
@@ -310,13 +316,16 @@
             this.btnInStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInStock.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInStock.ForeColor = System.Drawing.Color.White;
+            this.btnInStock.Image = ((System.Drawing.Image)(resources.GetObject("btnInStock.Image")));
+            this.btnInStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInStock.Location = new System.Drawing.Point(0, 387);
             this.btnInStock.Name = "btnInStock";
             this.btnInStock.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnInStock.Size = new System.Drawing.Size(199, 45);
             this.btnInStock.TabIndex = 4;
-            this.btnInStock.Text = "In Stock";
+            this.btnInStock.Text = "   In Stock";
             this.btnInStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInStock.UseVisualStyleBackColor = true;
             this.btnInStock.Click += new System.EventHandler(this.btnInStock_Click);
             // 

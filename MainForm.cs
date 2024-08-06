@@ -33,10 +33,10 @@ namespace POSales
             connection = new SqlConnection(connectionClass.DatabaseConnection());
 
             // Open Connection
-            connection.Open();
+            // connection.Open();
 
             // Display if Connection to Database is Opened
-            MessageBox.Show("Database is Connected");
+            // MessageBox.Show("Database is Connected");
         }
 
         private void panelLogo_Paint(object sender, PaintEventArgs e)
@@ -170,7 +170,10 @@ namespace POSales
 
         private void btnStockEntry_Click(object sender, EventArgs e)
         {
+            // Open Stock Entry Form as Child Form
+            openChildrenForm(new StockInModule());
 
+            hideSubMenu();
         }
 
         private void btnStockAdjustment_Click(object sender, EventArgs e)
