@@ -101,7 +101,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Saving Product" + ex.Message);
             }
         }
 
@@ -163,45 +167,66 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Updating Product" + ex.Message);
             }
         }
 
         /// LOAD CATEGORIES
         public void loadCategories()
         {
-            // Clear Existing Items in ComboBox
-            cboCategory.Items.Clear();
+            try
+            {
+                // Clear Existing Items in ComboBox
+                cboCategory.Items.Clear();
 
-            // Set Data Source to Category Table
-            cboCategory.DataSource = connectionClass.getTable("SELECT * FROM tbCategory");
+                // Set Data Source to Category Table
+                cboCategory.DataSource = connectionClass.getTable("SELECT * FROM tbCategory");
 
-            // Display Category Name
-            cboCategory.DisplayMember = "category";
+                // Display Category Name
+                cboCategory.DisplayMember = "category";
 
-            // Use Category ID as Value
-            cboCategory.ValueMember = "id";
+                // Use Category ID as Value
+                cboCategory.ValueMember = "id";
+            }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Categories in Combo Box" + ex.Message);
+            }
         }
 
         /// LOAD BRANDS
         public void loadBrands()
         {
-            // Clear Existing Items in ComboBox
-            cboBrand.Items.Clear();
+            try
+            {
+                // Clear Existing Items in ComboBox
+                cboBrand.Items.Clear();
 
-            // Set Data Source to Brand Table
-            cboBrand.DataSource = connectionClass.getTable("SELECT * FROM tbBrand");
+                // Set Data Source to Brand Table
+                cboBrand.DataSource = connectionClass.getTable("SELECT * FROM tbBrand");
 
-            // Display Brand Name
-            cboBrand.DisplayMember = "brand";
+                // Display Brand Name
+                cboBrand.DisplayMember = "brand";
 
-            // Use Brand ID as Value
-            cboBrand.ValueMember = "id";
-        }
+                // Use Brand ID as Value
+                cboBrand.ValueMember = "id";
+            }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
 
-        private void cboWeight_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Brands in Combo Box" + ex.Message);
+            }
         }
     }
 }

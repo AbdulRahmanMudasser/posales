@@ -47,11 +47,6 @@ namespace POSales
             // MessageBox.Show("Database is Connected");
         }
 
-        private void panelLogo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         #region buttons
         private void customizeDesign()
         {
@@ -250,10 +245,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                // Close Database Connection
+                // Close Connection
                 connection.Close();
 
-                MessageBox.Show(ex.Message);
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Fetching Records Based on Transaction Number" + ex.Message);
             }
         }
 
@@ -389,7 +385,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Cart" + ex.Message);
             }
         }
 

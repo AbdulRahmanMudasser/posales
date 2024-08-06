@@ -47,39 +47,50 @@ namespace POSales
         /// DISPLAY DATA RETREIVE FROM tbProduct to dgvProduct
         public void loadProducts()
         {
-            // To Keep Track of Row Number
-            int i = 0;
-
-            // Clear All Rows from DataGridView to Prepare for Fresh Data
-            dgvProduct.Rows.Clear();
-
-            // Open Database Connection
-            connection.Open();
-
-            // SQL Command to Select All Records from tbProduct Table, Also for Searching
-            // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
-
-            // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
-            sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
-
-            // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
-            dataReader = sqlCommand.ExecuteReader();
-
-            // Iterate through the DataReader to Read Each Row of Data
-            while (dataReader.Read())
+            try
             {
-                // Increment Counter for Each Row
-                i++;
+                // To Keep Track of Row Number
+                int i = 0;
 
-                // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString());
+                // Clear All Rows from DataGridView to Prepare for Fresh Data
+                dgvProduct.Rows.Clear();
+
+                // Open Database Connection
+                connection.Open();
+
+                // SQL Command to Select All Records from tbProduct Table, Also for Searching
+                // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
+
+                // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
+                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
+
+                // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
+                dataReader = sqlCommand.ExecuteReader();
+
+                // Iterate through the DataReader to Read Each Row of Data
+                while (dataReader.Read())
+                {
+                    // Increment Counter for Each Row
+                    i++;
+
+                    // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
+                    dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString());
+                }
+
+                // Close DataReader After Reading All Data
+                dataReader.Close();
+
+                // Close Database Connection
+                connection.Close();
             }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
 
-            // Close DataReader After Reading All Data
-            dataReader.Close();
-
-            // Close Database Connection
-            connection.Close();
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Products" + ex.Message);
+            }
         }
 
         /// CLOSE WINDOW
@@ -95,13 +106,14 @@ namespace POSales
 
             if (databaseOperation == "AddToCart")
             {
-                // To Add Product Name in Cart Table
-                QuantityModule quantityModule = new QuantityModule(cashierForm);
+                    // To Add Product Name in Cart Table
+                    QuantityModule quantityModule = new QuantityModule(cashierForm);
 
-                quantityModule.productDetails(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString(), double.Parse(dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString()), cashierForm.lblTransactionNumberActual.Text, int.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString()));
+                    quantityModule.productDetails(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString(), double.Parse(dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString()), cashierForm.lblTransactionNumberActual.Text, int.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString()));
 
-                quantityModule.ShowDialog();
+                    quantityModule.ShowDialog();
             }
+
             // Load Products
             loadProducts();
         }

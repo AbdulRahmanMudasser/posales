@@ -153,7 +153,6 @@
             this.txtSearchSupplier.MaxLength = 32767;
             this.txtSearchSupplier.Name = "txtSearchSupplier";
             this.txtSearchSupplier.PasswordChar = '\0';
-            this.txtSearchSupplier.PromptText = "Search Supplier";
             this.txtSearchSupplier.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchSupplier.SelectedText = "";
             this.txtSearchSupplier.SelectionLength = 0;

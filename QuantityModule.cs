@@ -60,30 +60,41 @@ namespace POSales
         {
             if ((e.KeyChar == 13) && (txtQuantity.Text != string.Empty))
             {
-                // Open Connection
-                connection.Open();
+                try
+                {
+                    // Open Connection
+                    connection.Open();
 
-                // SQL Command to Insert Cart Into the Cart Table
-                sqlCommand = new SqlCommand("INSERT INTO tbCart (transactionNumber, productCode, price, quantity, sDate, cashier) VALUES (@transactionNumber, @productCode, @price, @quantity, @sDate, @cashier)", connection);
+                    // SQL Command to Insert Cart Into the Cart Table
+                    sqlCommand = new SqlCommand("INSERT INTO tbCart (transactionNumber, productCode, price, quantity, sDate, cashier) VALUES (@transactionNumber, @productCode, @price, @quantity, @sDate, @cashier)", connection);
 
-                // Add the product Parameters to the SQL Command With the Value
-                sqlCommand.Parameters.AddWithValue("@transactionNumber", transactionNumber);
-                sqlCommand.Parameters.AddWithValue("@productCode", productCode);
-                sqlCommand.Parameters.AddWithValue("@price", price);
-                sqlCommand.Parameters.AddWithValue("@quantity", txtQuantity.Text);
-                sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now);
-                sqlCommand.Parameters.AddWithValue("@cashier", cashierForm.lblCashierName.Text);
+                    // Add the product Parameters to the SQL Command With the Value
+                    sqlCommand.Parameters.AddWithValue("@transactionNumber", transactionNumber);
+                    sqlCommand.Parameters.AddWithValue("@productCode", productCode);
+                    sqlCommand.Parameters.AddWithValue("@price", price);
+                    sqlCommand.Parameters.AddWithValue("@quantity", txtQuantity.Text);
+                    sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now);
+                    sqlCommand.Parameters.AddWithValue("@cashier", cashierForm.lblCashierName.Text);
 
-                // Execute the SQL Command to Insert the New Cart Into the Database
-                sqlCommand.ExecuteNonQuery();
+                    // Execute the SQL Command to Insert the New Cart Into the Database
+                    sqlCommand.ExecuteNonQuery();
 
-                // Close the Database Connection
-                connection.Close();
+                    // Close the Database Connection
+                    connection.Close();
 
-                cashierForm.loadCart();
+                    cashierForm.loadCart();
 
-                // Dispose Form
-                this.Dispose();
+                    // Dispose Form
+                    this.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    // Close Connection
+                    connection.Close();
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception has Occurred while Inserting In Cart" + ex.Message);
+                }
             }
         }
 

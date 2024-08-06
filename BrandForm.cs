@@ -39,39 +39,50 @@ namespace POSales
         /// DISPLAY DATA RETREIVE FROM tbBrand TO dgvBrand 
         public void loadBrands()
         {
-            // To Keep Track of Row Number
-            int i = 0;
-
-            // Clear All Rows from DataGridView to Prepare for Fresh Data
-            dgvBrand.Rows.Clear();
-
-            // Open Database Connection
-            connection.Open();
-
-            // SQL Command to Select All Records from tbBrand Table, Ordered By brand Column
-            // sqlCommand = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", connection);
-
-            // For Searching Brand, Also for Loading Brands
-            sqlCommand = new SqlCommand("SELECT * FROM tbBrand WHERE brand LIKE '%" + txtSearchBrand.Text + "%'", connection);
-
-            // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
-            dataReader = sqlCommand.ExecuteReader();
-
-            // Iterate through the DataReader to Read Each Row of Data
-            while (dataReader.Read())
+            try
             {
-                // Increment Counter for Each Row
-                i++;
+                // To Keep Track of Row Number
+                int i = 0;
 
-                // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                dgvBrand.Rows.Add(i, dataReader["id"].ToString(), dataReader["brand"].ToString());
+                // Clear All Rows from DataGridView to Prepare for Fresh Data
+                dgvBrand.Rows.Clear();
+
+                // Open Database Connection
+                connection.Open();
+
+                // SQL Command to Select All Records from tbBrand Table, Ordered By brand Column
+                // sqlCommand = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", connection);
+
+                // For Searching Brand, Also for Loading Brands
+                sqlCommand = new SqlCommand("SELECT * FROM tbBrand WHERE brand LIKE '%" + txtSearchBrand.Text + "%'", connection);
+
+                // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
+                dataReader = sqlCommand.ExecuteReader();
+
+                // Iterate through the DataReader to Read Each Row of Data
+                while (dataReader.Read())
+                {
+                    // Increment Counter for Each Row
+                    i++;
+
+                    // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
+                    dgvBrand.Rows.Add(i, dataReader["id"].ToString(), dataReader["brand"].ToString());
+                }
+
+                // Close DataReader After Reading All Data
+                dataReader.Close();
+
+                // Close Database Connection
+                connection.Close();
             }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
 
-            // Close DataReader After Reading All Data
-            dataReader.Close();
-
-            // Close Database Connection
-            connection.Close();
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Brands" + ex.Message);
+            }
         }
 
         /// CLOSE WINDOW
@@ -148,7 +159,11 @@ namespace POSales
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    // Close Connection
+                    connection.Close();
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception has Occurred while Deleting Brand" + ex.Message);
                 }
             }
 

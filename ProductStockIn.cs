@@ -48,36 +48,47 @@ namespace POSales
         /// DISPLAY DATA RETREIVE FROM tbProduct to dgvProduct
         public void loadProducts()
         {
-            // To Keep Track of Row Number
-            int i = 0;
-
-            // Clear All Rows from DataGridView to Prepare for Fresh Data
-            dgvProduct.Rows.Clear();
-
-            // Open Database Connection
-            connection.Open();
-
-            // Search By ProductCode, Description, Also for Loading Products
-            sqlCommand = new SqlCommand("SELECT productCode, description, quantity, weight FROM tbProduct WHERE productCode LIKE '%" + txtSearchProduct.Text + "%' OR description LIKE '%"+ txtSearchProduct.Text + "%'", connection);
-
-            // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
-            dataReader = sqlCommand.ExecuteReader();
-
-            // Iterate through the DataReader to Read Each Row of Data
-            while (dataReader.Read())
+            try
             {
-                // Increment Counter for Each Row
-                i++;
+                // To Keep Track of Row Number
+                int i = 0;
 
-                // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString());
+                // Clear All Rows from DataGridView to Prepare for Fresh Data
+                dgvProduct.Rows.Clear();
+
+                // Open Database Connection
+                connection.Open();
+
+                // Search By ProductCode, Description, Also for Loading Products
+                sqlCommand = new SqlCommand("SELECT productCode, description, quantity, weight FROM tbProduct WHERE productCode LIKE '%" + txtSearchProduct.Text + "%' OR description LIKE '%" + txtSearchProduct.Text + "%'", connection);
+
+                // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
+                dataReader = sqlCommand.ExecuteReader();
+
+                // Iterate through the DataReader to Read Each Row of Data
+                while (dataReader.Read())
+                {
+                    // Increment Counter for Each Row
+                    i++;
+
+                    // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
+                    dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString());
+                }
+
+                // Close DataReader After Reading All Data
+                dataReader.Close();
+
+                // Close Database Connection
+                connection.Close();
             }
+            catch (Exception ex)
+            {
+                // Close Connection
+                connection.Close();
 
-            // Close DataReader After Reading All Data
-            dataReader.Close();
-
-            // Close Database Connection
-            connection.Close();
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Loading Products" + ex.Message);
+            }
         }
 
         /// ADD TO STOCK IN MODULE
@@ -132,7 +143,11 @@ namespace POSales
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        // Close Connection
+                        connection.Close();
+
+                        // Display User that an Unexpected Exception has Occurred
+                        MessageBox.Show("An Unexpected Exception has Occurred while Adding in Stock In" + ex.Message);
                     }
                 }
             }
@@ -147,11 +162,6 @@ namespace POSales
         private void picClose_Click_1(object sender, EventArgs e)
         {
             this.Dispose();
-        }
-
-        private void txtSearchProduct_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -88,7 +88,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Saving Brand" + ex.Message);
             }
         }
 
@@ -132,7 +136,11 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Close Connection
+                connection.Close();
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception has Occurred while Updating Category" + ex.Message);
             }
         }
     }
