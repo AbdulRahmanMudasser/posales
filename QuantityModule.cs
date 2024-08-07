@@ -143,7 +143,7 @@ namespace POSales
                         sqlCommand.Parameters.AddWithValue("@transactionNumber", transactionNumber); // Add transaction number parameter
                         sqlCommand.Parameters.AddWithValue("@productCode", productCode); // Add product code parameter
                         sqlCommand.Parameters.AddWithValue("@price", price); // Add price parameter
-                        sqlCommand.Parameters.AddWithValue("@quantity", quantity); // Add quantity parameter
+                        sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(txtQuantity.Text)); // Add quantity parameter
                         sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now); // Add current date parameter
                         sqlCommand.Parameters.AddWithValue("@cashier", cashierForm.lblCashierName.Text); // Add cashier name parameter
 
