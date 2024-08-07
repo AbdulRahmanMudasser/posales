@@ -61,6 +61,12 @@
     <Compile Include="CashierForm.Designer.cs">
       <DependentUpon>CashierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DiscountModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiscountModule.Designer.cs">
+      <DependentUpon>DiscountModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductStockIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CashierForm.resx">
       <DependentUpon>CashierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiscountModule.resx">
+      <DependentUpon>DiscountModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductStockIn.resx">
       <DependentUpon>ProductStockIn.cs</DependentUpon>

@@ -29,9 +29,9 @@ namespace POSales
 
         int quantity;
 
-        string productCode;
+        string price;
 
-        double price;
+        string id;
 
         public CashierForm()
         {
@@ -164,19 +164,37 @@ namespace POSales
 
         private void btnSearchProduct_Click(object sender, EventArgs e)
         {
+            // Slide Button Animation For btnSearchProduct
             slider(btnSearchProduct);
 
+            // Initialize CashierLookUpProducts Window
             CashierLookUpProducts lookUpProducts = new CashierLookUpProducts(this);
 
+            // Load Products Into LookUpProducts
             lookUpProducts.loadProducts();
 
+            // Show LookUpProducts Dialog
             lookUpProducts.ShowDialog();
         }
 
         private void btnAddDiscount_Click(object sender, EventArgs e)
         {
+            // Slide Button Animation For btnAddDiscount
             slider(btnAddDiscount);
+
+            // Initialize DiscountModule Window
+            DiscountModule discountModule = new DiscountModule(this);
+
+            // Set Discount Module Label Id Text
+            discountModule.lblId.Text = id;
+
+            // Set Discount Module Total Price Text
+            discountModule.txtTotalPrice.Text = price;
+
+            // Show DiscountModule Dialog
+            discountModule.ShowDialog();
         }
+
 
         private void btnClearCart_Click(object sender, EventArgs e)
         {
@@ -381,7 +399,7 @@ namespace POSales
                     discount += Convert.ToDouble(discountValue);
 
                     // Add New Row to DataGridView with Row Number, Product Code, Description, Price, Quantity, Discount Value, and Formatted Total Value
-                    dgvCart.Rows.Add(i, productCode, description, price, quantity, discountValue, double.Parse(totalValue).ToString("#,##0.00"));
+                    dgvCart.Rows.Add(i, id, productCode, description, price, quantity, discountValue, double.Parse(totalValue).ToString("#,##0.00"));
                 }
 
                 // Close DataReader After Reading All Data
@@ -604,6 +622,19 @@ namespace POSales
                 MessageBox.Show("An Unexpected Exception has Occurred while Searching By Barcode" + ex.Message);
             }
         }
+
+        private void dgvCart_SelectionChanged(object sender, EventArgs e)
+        {
+            // Get Current Row Index
+            int i = dgvCart.CurrentRow.Index;
+
+            // Retrieve Item Id From Second Column
+            id = dgvCart[1, i].Value.ToString();
+
+            // Retrieve Item Price From Eighth Column
+            price = dgvCart[7, i].Value.ToString();
+        }
+
 
         //public void addToCart(string productCode, double price, int quantity)
         //{
