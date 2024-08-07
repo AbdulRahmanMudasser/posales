@@ -115,7 +115,7 @@ namespace POSales
 
                         // SQL Command to Update Quantity in Cart
                         sqlCommand = new SqlCommand("UPDATE tbCart SET quantity = quantity + @quantity WHERE id = @id", connection);
-                        sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(txtQuantity.Text); // Add quantity parameter
+                        sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(txtQuantity.Text)); // Add quantity parameter
                         sqlCommand.Parameters.AddWithValue("@id", id); // Add cart ID parameter
 
                         // Execute SQL Command to Update Cart
