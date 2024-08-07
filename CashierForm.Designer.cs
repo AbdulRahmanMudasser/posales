@@ -370,9 +370,9 @@
             this.DecrementProduct,
             this.RemoveProduct});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
