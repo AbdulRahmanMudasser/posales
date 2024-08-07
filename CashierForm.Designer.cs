@@ -54,24 +54,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-            this.lblVATableActual = new System.Windows.Forms.Label();
-            this.lblVATable = new System.Windows.Forms.Label();
-            this.lblVATActual = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblDisountActual = new System.Windows.Forms.Label();
-            this.lblDiscount = new System.Windows.Forms.Label();
-            this.lblSalesTotalActual = new System.Windows.Forms.Label();
-            this.lblSalesTotal = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblDateActual = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblTransactionNumberActual = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblDisplayTotal = new System.Windows.Forms.Label();
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.picClose = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,6 +64,25 @@
             this.IncrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.DecrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.RemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
+            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.txtBarcodeQuantity = new System.Windows.Forms.TextBox();
+            this.lblVATableActual = new System.Windows.Forms.Label();
+            this.lblVATable = new System.Windows.Forms.Label();
+            this.lblVATActual = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblDisountActual = new System.Windows.Forms.Label();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.lblSalesTotalActual = new System.Windows.Forms.Label();
+            this.lblSalesTotal = new System.Windows.Forms.Label();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblDateActual = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblTransactionNumberActual = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblDisplayTotal = new System.Windows.Forms.Label();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.picClose = new System.Windows.Forms.PictureBox();
             this.panelSlide.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -371,7 +372,7 @@
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -396,8 +397,102 @@
             this.dgvCart.Size = new System.Drawing.Size(870, 700);
             this.dgvCart.TabIndex = 3;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.DividerWidth = 1;
+            this.Column1.HeaderText = "No.";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Code";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 90;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column3.HeaderText = "Description";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column6.HeaderText = "Price";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 82;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column4.HeaderText = "Qty";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 73;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column5.HeaderText = "Discount";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 115;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Column7.HeaderText = "Total";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 81;
+            // 
+            // IncrementProduct
+            // 
+            this.IncrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IncrementProduct.HeaderText = "";
+            this.IncrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("IncrementProduct.Image")));
+            this.IncrementProduct.MinimumWidth = 50;
+            this.IncrementProduct.Name = "IncrementProduct";
+            this.IncrementProduct.Width = 50;
+            // 
+            // DecrementProduct
+            // 
+            this.DecrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DecrementProduct.HeaderText = "";
+            this.DecrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("DecrementProduct.Image")));
+            this.DecrementProduct.MinimumWidth = 50;
+            this.DecrementProduct.Name = "DecrementProduct";
+            this.DecrementProduct.Width = 50;
+            // 
+            // RemoveProduct
+            // 
+            this.RemoveProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RemoveProduct.HeaderText = "";
+            this.RemoveProduct.Image = ((System.Drawing.Image)(resources.GetObject("RemoveProduct.Image")));
+            this.RemoveProduct.MinimumWidth = 50;
+            this.RemoveProduct.Name = "RemoveProduct";
+            this.RemoveProduct.Width = 50;
+            // 
             // metroPanel2
             // 
+            this.metroPanel2.Controls.Add(this.txtBarcodeQuantity);
             this.metroPanel2.Controls.Add(this.lblVATableActual);
             this.metroPanel2.Controls.Add(this.lblVATable);
             this.metroPanel2.Controls.Add(this.lblVATActual);
@@ -406,7 +501,7 @@
             this.metroPanel2.Controls.Add(this.lblDiscount);
             this.metroPanel2.Controls.Add(this.lblSalesTotalActual);
             this.metroPanel2.Controls.Add(this.lblSalesTotal);
-            this.metroPanel2.Controls.Add(this.textBox1);
+            this.metroPanel2.Controls.Add(this.txtBarcode);
             this.metroPanel2.Controls.Add(this.label6);
             this.metroPanel2.Controls.Add(this.lblDateActual);
             this.metroPanel2.Controls.Add(this.label5);
@@ -424,6 +519,19 @@
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
+            // 
+            // txtBarcodeQuantity
+            // 
+            this.txtBarcodeQuantity.BackColor = System.Drawing.Color.White;
+            this.txtBarcodeQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBarcodeQuantity.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBarcodeQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBarcodeQuantity.Location = new System.Drawing.Point(166, 211);
+            this.txtBarcodeQuantity.Name = "txtBarcodeQuantity";
+            this.txtBarcodeQuantity.Size = new System.Drawing.Size(50, 30);
+            this.txtBarcodeQuantity.TabIndex = 18;
+            this.txtBarcodeQuantity.Text = "1";
+            this.txtBarcodeQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblVATableActual
             // 
@@ -525,16 +633,17 @@
             this.lblSalesTotal.TabIndex = 9;
             this.lblSalesTotal.Text = "Sales Total";
             // 
-            // textBox1
+            // txtBarcode
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(8, 211);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 30);
-            this.textBox1.TabIndex = 3;
+            this.txtBarcode.BackColor = System.Drawing.Color.White;
+            this.txtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBarcode.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBarcode.Location = new System.Drawing.Point(8, 211);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(150, 30);
+            this.txtBarcode.TabIndex = 3;
+            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             // 
             // label6
             // 
@@ -640,99 +749,6 @@
             this.picClose.TabStop = false;
             this.picClose.Click += new System.EventHandler(this.picClose_Click);
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DividerWidth = 1;
-            this.Column1.HeaderText = "No.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 70;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Code";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 90;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column3.HeaderText = "Description";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column6.HeaderText = "Price";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 82;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column4.HeaderText = "Qty";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 73;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column5.HeaderText = "Discount";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 115;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Column7.HeaderText = "Total";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 81;
-            // 
-            // IncrementProduct
-            // 
-            this.IncrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.IncrementProduct.HeaderText = "";
-            this.IncrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("IncrementProduct.Image")));
-            this.IncrementProduct.MinimumWidth = 50;
-            this.IncrementProduct.Name = "IncrementProduct";
-            this.IncrementProduct.Width = 50;
-            // 
-            // DecrementProduct
-            // 
-            this.DecrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DecrementProduct.HeaderText = "";
-            this.DecrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("DecrementProduct.Image")));
-            this.DecrementProduct.MinimumWidth = 50;
-            this.DecrementProduct.Name = "DecrementProduct";
-            this.DecrementProduct.Width = 50;
-            // 
-            // RemoveProduct
-            // 
-            this.RemoveProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.RemoveProduct.HeaderText = "";
-            this.RemoveProduct.Image = ((System.Drawing.Image)(resources.GetObject("RemoveProduct.Image")));
-            this.RemoveProduct.MinimumWidth = 50;
-            this.RemoveProduct.Name = "RemoveProduct";
-            this.RemoveProduct.Width = 50;
-            // 
             // CashierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -787,7 +803,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblDateActual;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblSalesTotal;
         private System.Windows.Forms.Label lblDisountActual;
         private System.Windows.Forms.Label lblDiscount;
@@ -808,6 +823,8 @@
         private System.Windows.Forms.DataGridViewImageColumn IncrementProduct;
         private System.Windows.Forms.DataGridViewImageColumn DecrementProduct;
         private System.Windows.Forms.DataGridViewImageColumn RemoveProduct;
+        private System.Windows.Forms.TextBox txtBarcodeQuantity;
+        public System.Windows.Forms.TextBox txtBarcode;
     }
 }
 
