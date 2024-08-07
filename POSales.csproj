@@ -85,6 +85,12 @@
     <Compile Include="QuantityModule.Designer.cs">
       <DependentUpon>QuantityModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettlePaymentModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettlePaymentModule.Designer.cs">
+      <DependentUpon>SettlePaymentModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="StockInModule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuantityModule.resx">
       <DependentUpon>QuantityModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettlePaymentModule.resx">
+      <DependentUpon>SettlePaymentModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockInModule.resx">
       <DependentUpon>StockInModule.cs</DependentUpon>
