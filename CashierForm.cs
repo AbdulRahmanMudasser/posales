@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace POSales
 {
@@ -219,6 +220,14 @@ namespace POSales
         private void btnSettlePayment_Click(object sender, EventArgs e)
         {
             slider(btnSettlePayment);
+
+            SettlePaymentModule settlePaymentModule = new SettlePaymentModule(this);
+
+            string cleanedText = lblDisplayTotal.Text.Trim().Replace(" ", "");
+
+            settlePaymentModule.txtSale.Text = cleanedText;
+
+            settlePaymentModule.ShowDialog();
         }
 
         #endregion buttons

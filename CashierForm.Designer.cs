@@ -56,6 +56,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IncrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DecrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
+            this.RemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.txtBarcodeQuantity = new System.Windows.Forms.TextBox();
             this.lblVATableActual = new System.Windows.Forms.Label();
@@ -75,17 +86,6 @@
             this.lblDisplayTotal = new System.Windows.Forms.Label();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.picClose = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IncrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DecrementProduct = new System.Windows.Forms.DataGridViewImageColumn();
-            this.RemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelSlide.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -346,10 +346,14 @@
             this.dgvCart.AllowUserToAddRows = false;
             this.dgvCart.AllowUserToResizeColumns = false;
             this.dgvCart.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             this.dgvCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
@@ -381,7 +385,6 @@
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCart.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgvCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCart.EnableHeadersVisualStyles = false;
             this.dgvCart.Location = new System.Drawing.Point(0, 50);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(0);
@@ -401,6 +404,110 @@
             this.dgvCart.Size = new System.Drawing.Size(870, 700);
             this.dgvCart.TabIndex = 3;
             this.dgvCart.SelectionChanged += new System.EventHandler(this.dgvCart_SelectionChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.DividerWidth = 1;
+            this.Column1.HeaderText = "No.";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Id";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.Visible = false;
+            this.Column8.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column2.HeaderText = "Code";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 90;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column3.HeaderText = "Description";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column6.HeaderText = "Price";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 82;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Column4.HeaderText = "Quantity";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 77;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Column5.HeaderText = "Discount";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 115;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Column7.HeaderText = "Total";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 81;
+            // 
+            // IncrementProduct
+            // 
+            this.IncrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IncrementProduct.HeaderText = "";
+            this.IncrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("IncrementProduct.Image")));
+            this.IncrementProduct.MinimumWidth = 50;
+            this.IncrementProduct.Name = "IncrementProduct";
+            this.IncrementProduct.Width = 50;
+            // 
+            // DecrementProduct
+            // 
+            this.DecrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DecrementProduct.HeaderText = "";
+            this.DecrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("DecrementProduct.Image")));
+            this.DecrementProduct.MinimumWidth = 50;
+            this.DecrementProduct.Name = "DecrementProduct";
+            this.DecrementProduct.Width = 50;
+            // 
+            // RemoveProduct
+            // 
+            this.RemoveProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RemoveProduct.HeaderText = "";
+            this.RemoveProduct.Image = ((System.Drawing.Image)(resources.GetObject("RemoveProduct.Image")));
+            this.RemoveProduct.MinimumWidth = 50;
+            this.RemoveProduct.Name = "RemoveProduct";
+            this.RemoveProduct.Width = 50;
             // 
             // metroPanel2
             // 
@@ -661,110 +768,6 @@
             this.picClose.TabStop = false;
             this.picClose.Click += new System.EventHandler(this.picClose_Click);
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column1.DividerWidth = 1;
-            this.Column1.HeaderText = "No.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 70;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Id";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.Visible = false;
-            this.Column8.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column2.HeaderText = "Code";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 90;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column3.HeaderText = "Description";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column6.HeaderText = "Price";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 82;
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Column4.HeaderText = "Quantity";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 77;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Column5.HeaderText = "Discount";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 115;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column7.HeaderText = "Total";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 81;
-            // 
-            // IncrementProduct
-            // 
-            this.IncrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.IncrementProduct.HeaderText = "";
-            this.IncrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("IncrementProduct.Image")));
-            this.IncrementProduct.MinimumWidth = 50;
-            this.IncrementProduct.Name = "IncrementProduct";
-            this.IncrementProduct.Width = 50;
-            // 
-            // DecrementProduct
-            // 
-            this.DecrementProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DecrementProduct.HeaderText = "";
-            this.DecrementProduct.Image = ((System.Drawing.Image)(resources.GetObject("DecrementProduct.Image")));
-            this.DecrementProduct.MinimumWidth = 50;
-            this.DecrementProduct.Name = "DecrementProduct";
-            this.DecrementProduct.Width = 50;
-            // 
-            // RemoveProduct
-            // 
-            this.RemoveProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.RemoveProduct.HeaderText = "";
-            this.RemoveProduct.Image = ((System.Drawing.Image)(resources.GetObject("RemoveProduct.Image")));
-            this.RemoveProduct.MinimumWidth = 50;
-            this.RemoveProduct.Name = "RemoveProduct";
-            this.RemoveProduct.Width = 50;
-            // 
             // CashierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -813,8 +816,6 @@
         private System.Windows.Forms.PictureBox picClose;
         private MetroFramework.Controls.MetroPanel panelSlider;
         private MetroFramework.Controls.MetroPanel metroPanel2;
-        private System.Windows.Forms.DataGridView dgvCart;
-        private System.Windows.Forms.Label lblDisplayTotal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblDateActual;
@@ -842,6 +843,8 @@
         private System.Windows.Forms.DataGridViewImageColumn IncrementProduct;
         private System.Windows.Forms.DataGridViewImageColumn DecrementProduct;
         private System.Windows.Forms.DataGridViewImageColumn RemoveProduct;
+        public System.Windows.Forms.DataGridView dgvCart;
+        public System.Windows.Forms.Label lblDisplayTotal;
     }
 }
 
