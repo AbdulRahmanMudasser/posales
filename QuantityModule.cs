@@ -73,6 +73,16 @@ namespace POSales
             {
                 try
                 {
+                    // Parse and validate the input quantity
+                    int inputQuantity = int.Parse(txtQuantity.Text);
+
+                    // Check for negative or zero input
+                    if (inputQuantity <= 0)
+                    {
+                        MessageBox.Show("Quantity Must Be a Positive Number.", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Exit the function if input is invalid
+                    }
+
                     // Declare Variables
                     string id = ""; // Variable to store the cart ID
                     int cartQuantity = 0; // Variable to store the quantity of the product in the cart
@@ -101,39 +111,39 @@ namespace POSales
                     // Close Database Connection
                     connection.Close();
 
+                    // Calculate total desired quantity (existing in cart + new input)
+                    int totalDesiredQuantity = cartQuantity + inputQuantity;
+
+                    // Check if entered quantity is less than, equal to, or greater than available quantity
+                    if (totalDesiredQuantity > quantity)
+                    {
+                        // Display Warning Message If Quantity Is Insufficient
+                        MessageBox.Show($"Unable To Proceed. Only {quantity} Quantity Available", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Exit the function
+                    }
+                    else if (totalDesiredQuantity == quantity)
+                    {
+                        // Display Warning Message That Quantity Will Be Finished
+                        var result = MessageBox.Show($"This Will Consume All Remaining Stock ({quantity}). Do You Want to Proceed?", "POSales", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Cancel)
+                        {
+                            return; // Exit the function if user cancels
+                        }
+                    }
+
                     // Check if Product is Found and Update or Insert as Needed
                     if (productFound)
                     {
-                        // Check if Available Quantity Is Sufficient
-                        if (quantity < (int.Parse(txtQuantity.Text) + cartQuantity))
-                        {
-                            // Display Warning Message If Quantity Is Insufficient
-                            MessageBox.Show($"Unable to proceed. Remaining quantity on hand is {quantity}.", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // Exit the function
-                        }
-
                         // Open Database Connection
                         connection.Open();
 
                         // SQL Command to Update Quantity in Cart
                         sqlCommand = new SqlCommand("UPDATE tbCart SET quantity = quantity + @quantity WHERE id = @id", connection);
-                        sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(txtQuantity.Text)); // Add quantity parameter
+                        sqlCommand.Parameters.AddWithValue("@quantity", inputQuantity); // Add quantity parameter
                         sqlCommand.Parameters.AddWithValue("@id", id); // Add cart ID parameter
 
                         // Execute SQL Command to Update Cart
                         sqlCommand.ExecuteNonQuery();
-
-                        // Clear Barcode TextBox
-                        cashierForm.txtBarcode.Clear();
-
-                        // Focus Barcode TextBox
-                        cashierForm.txtBarcode.Focus();
-
-                        // Load Cart
-                        cashierForm.loadCart();
-
-                        // Dispose Form
-                        this.Dispose();
                     }
                     else
                     {
@@ -145,7 +155,7 @@ namespace POSales
                         sqlCommand.Parameters.AddWithValue("@transactionNumber", transactionNumber); // Add transaction number parameter
                         sqlCommand.Parameters.AddWithValue("@productCode", productCode); // Add product code parameter
                         sqlCommand.Parameters.AddWithValue("@price", price); // Add price parameter
-                        sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(txtQuantity.Text)); // Add quantity parameter
+                        sqlCommand.Parameters.AddWithValue("@quantity", inputQuantity); // Add quantity parameter
                         sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now); // Add current date parameter
                         sqlCommand.Parameters.AddWithValue("@cashier", cashierForm.lblCashierName.Text); // Add cashier name parameter
 
@@ -177,7 +187,7 @@ namespace POSales
                     }
 
                     // Display Message to User That an Unexpected Exception Has Occurred
-                    MessageBox.Show($"An unexpected exception has occurred while adding to cart: {ex.Message}");
+                    MessageBox.Show($"An Unexpected Exception Has Occurred While Adding to Cart: {ex.Message}");
                 }
             }
         }
@@ -189,48 +199,5 @@ namespace POSales
                 this.Dispose();
             }
         }
-
-
-        //private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if ((e.KeyChar == 13) && (txtQuantity.Text != string.Empty))
-        //    {
-        //        try
-        //        {
-        //            // Open Connection
-        //            connection.Open();
-
-        //            // SQL Command to Insert Cart Into the Cart Table
-        //            sqlCommand = new SqlCommand("INSERT INTO tbCart (transactionNumber, productCode, price, quantity, sDate, cashier) VALUES (@transactionNumber, @productCode, @price, @quantity, @sDate, @cashier)", connection);
-
-        //            // Add the product Parameters to the SQL Command With the Value
-        //            sqlCommand.Parameters.AddWithValue("@transactionNumber", transactionNumber);
-        //            sqlCommand.Parameters.AddWithValue("@productCode", productCode);
-        //            sqlCommand.Parameters.AddWithValue("@price", price);
-        //            sqlCommand.Parameters.AddWithValue("@quantity", txtQuantity.Text);
-        //            sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now);
-        //            sqlCommand.Parameters.AddWithValue("@cashier", cashierForm.lblCashierName.Text);
-
-        //            // Execute the SQL Command to Insert the New Cart Into the Database
-        //            sqlCommand.ExecuteNonQuery();
-
-        //            // Close the Database Connection
-        //            connection.Close();
-
-        //            cashierForm.loadCart();
-
-        //            // Dispose Form
-        //            this.Dispose();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Close Connection
-        //            connection.Close();
-
-        //            // Display User that an Unexpected Exception has Occurred
-        //            MessageBox.Show("An Unexpected Exception has Occurred while Inserting In Cart" + ex.Message);
-        //        }
-        //    }
-        //}
     }
 }
