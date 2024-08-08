@@ -50,6 +50,8 @@ namespace POSales
 
             // Assign Received cashierForm Argument to Global Variable
             this.cashierForm = cashierForm;
+
+            this.KeyPreview = true;
         }
 
         public void productDetails(string productCode, double price, string transactionNumber, int quantity)
@@ -179,6 +181,15 @@ namespace POSales
                 }
             }
         }
+
+        private void QuantityModule_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Dispose();
+            }
+        }
+
 
         //private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         //{
