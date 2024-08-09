@@ -54,7 +54,10 @@ namespace POSales
                 // sqlCommand = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", connection);
 
                 // For Searching Brand, Also for Loading Brands
-                sqlCommand = new SqlCommand("SELECT * FROM tbBrand WHERE brand LIKE '%" + txtSearchBrand.Text + "%'", connection);
+                sqlCommand = new SqlCommand("SELECT * FROM tbBrand WHERE brand LIKE @brand OR abbreviation LIKE @abbreviation", connection);
+
+                sqlCommand.Parameters.AddWithValue("@brand", "%" + txtSearchBrand.Text + "%");
+                sqlCommand.Parameters.AddWithValue("@abbreviation", "%" + txtSearchBrand.Text + "%");
 
                 // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
                 dataReader = sqlCommand.ExecuteReader();
@@ -66,7 +69,7 @@ namespace POSales
                     i++;
 
                     // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                    dgvBrand.Rows.Add(i, dataReader["id"].ToString(), dataReader["brand"].ToString());
+                    dgvBrand.Rows.Add(i, dataReader["id"].ToString(), dataReader["brand"].ToString(), dataReader["abbreviation"].ToString());
                 }
 
                 // Close DataReader After Reading All Data
@@ -121,6 +124,9 @@ namespace POSales
 
                 // Set, With the Value from Selected Row's Brand Name Column In DataGridView
                 brandModule.txtBrand.Text = dgvBrand[2, e.RowIndex].Value.ToString();
+
+                // Set, With the Value from Selected Row's Brand Name Column In DataGridView
+                brandModule.txtAbbreviation.Text = dgvBrand[3, e.RowIndex].Value.ToString();
 
                 // Disable, Since We are Editing an Existing Brand
                 brandModule.btnSave.Enabled = false;

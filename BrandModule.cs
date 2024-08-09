@@ -62,10 +62,13 @@ namespace POSales
                     connection.Open();
 
                     // SQL Command to Insert a New Brand Into the Brand Table
-                    sqlCommand = new SqlCommand("INSERT INTO tbBrand (brand) VALUES (@brand)", connection);
+                    sqlCommand = new SqlCommand("INSERT INTO tbBrand (brand, abbreviation) VALUES (@brand, @abbreviation)", connection);
 
                     // Add the brand Parameter to the SQL Command With the Value from the txtBrand TextBox
                     sqlCommand.Parameters.AddWithValue("@brand", txtBrand.Text);
+
+                    // Add the brand Parameter to the SQL Command With the Value from the txtAbbreviation TextBox
+                    sqlCommand.Parameters.AddWithValue("@abbreviation", txtAbbreviation.Text);
 
                     // Execute the SQL Command to Insert the New Brand Into the Database
                     sqlCommand.ExecuteNonQuery();
@@ -116,10 +119,13 @@ namespace POSales
                     connection.Open();
 
                     // SQL Command to Update Brand in Brand Table with Specified id
-                    sqlCommand = new SqlCommand("UPDATE tbBrand SET brand = @brand WHERE id LIKE'" + lblId.Text + "'", connection);
+                    sqlCommand = new SqlCommand("UPDATE tbBrand SET brand = @brand abbreviation = @abbreviation WHERE id LIKE'" + lblId.Text + "'", connection);
 
                     // Add the Updated brand Parameter to the SQL Command With the Value from the txtBrand TextBox
                     sqlCommand.Parameters.AddWithValue("@brand", txtBrand.Text);
+
+                    // Add the Updated brand Parameter to the SQL Command With the Value from the txtAbbreviation TextBox
+                    sqlCommand.Parameters.AddWithValue("@abbreviation", txtAbbreviation.Text);
 
                     // Execute the SQL Command to Update Brand Name in the Database
                     sqlCommand.ExecuteNonQuery();
@@ -140,7 +146,7 @@ namespace POSales
                 connection.Close();
 
                 // Display User that an Unexpected Exception has Occurred
-                MessageBox.Show("An Unexpected Exception has Occurred while Updating Category" + ex.Message);
+                MessageBox.Show("An Unexpected Exception has Occurred while Updating Brand" + ex.Message);
             }
         }
     }

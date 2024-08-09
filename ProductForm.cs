@@ -54,7 +54,7 @@ namespace POSales
                 // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
 
                 // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
-                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
+                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, b.abbreviation, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
 
                 // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
                 dataReader = sqlCommand.ExecuteReader();
@@ -66,7 +66,7 @@ namespace POSales
                     i++;
 
                     // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-                    dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString());
+                    dgvProduct.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString(), dataReader[4].ToString(), dataReader[5].ToString(), dataReader[6].ToString(), dataReader[7].ToString(), dataReader[8].ToString(), dataReader[9].ToString());
                 }
 
                 // Close DataReader After Reading All Data
@@ -131,19 +131,19 @@ namespace POSales
                     productModule.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
 
                     // Set, With the Value from Selected Row's Category Column In DataGridView
-                    productModule.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
+                    productModule.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
 
                     // Set, With the Value from Selected Row's Price Column In DataGridView
-                    productModule.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+                    productModule.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
 
                     // Set, With the Value from Selected Row's Quantity Column In DataGridView
-                    productModule.nupQuantity.Text = dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
+                    productModule.nupQuantity.Text = dgvProduct.Rows[e.RowIndex].Cells[8].Value.ToString();
 
                     // Set, With the Value from Selected Row's ReOrder Level Column In DataGridView
-                    productModule.nupReOrder.Text = dgvProduct.Rows[e.RowIndex].Cells[8].Value.ToString();
+                    productModule.nupReOrder.Text = dgvProduct.Rows[e.RowIndex].Cells[9].Value.ToString();
 
                     // Set, With the Value from Selected Row's Weight Column In DataGridView
-                    productModule.txtWeight.Text = dgvProduct.Rows[e.RowIndex].Cells[9].Value.ToString();
+                    productModule.txtWeight.Text = dgvProduct.Rows[e.RowIndex].Cells[10].Value.ToString();
 
                     // Disable, Since We are Editing an Existing Product
                     productModule.btnSave.Enabled = false;
