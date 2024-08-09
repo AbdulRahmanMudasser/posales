@@ -40,6 +40,17 @@ namespace POSales
 
             // Load Brands to Brand Combo Box
             loadBrands();
+
+            // Check if we are adding a new product
+            if (string.IsNullOrEmpty(txtProductCode.Text))
+            {
+                // Generate a new product code
+                string lastProductCode = GetLastProductCode();
+
+                string newProductCode = GenerateNextProductCode(lastProductCode);
+
+                txtProductCode.Text = newProductCode;
+            }
         }
 
         /// CANCEL BUTTON
@@ -225,8 +236,65 @@ namespace POSales
                 connection.Close();
 
                 // Display User that an Unexpected Exception has Occurred
-                MessageBox.Show("An Unexpected Exception has Occurred while Loading Brands in Combo Box" + ex.Message);
+                MessageBox.Show("An Unexpected Exception Has Occurred While Loading Brands In Combo Box" + ex.Message);
             }
         }
+
+        // Method To Fetch The Last Product Code From The Database
+        private string GetLastProductCode()
+        {
+            // Default To "P00000" If No Product Codes Are Found
+            string lastProductCode = "P00000";
+
+            try
+            {
+                // Open The Database Connection
+                connection.Open();
+
+                // SQL Query To Get The Last Product Code, Ordered By ProductCode In Descending Order
+                string query = "SELECT TOP 1 productCode FROM tbProduct ORDER BY productCode DESC";
+                sqlCommand = new SqlCommand(query, connection);
+
+                // Execute The Query And Get The Result
+                object result = sqlCommand.ExecuteScalar();
+
+                // If A Product Code Was Found, Set It As The Last Product Code
+                if (result != null)
+                {
+                    lastProductCode = result.ToString();
+                }
+
+                // Close The Database Connection
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                // Close The Connection In Case Of An Error
+                connection.Close();
+
+                // Display An Error Message To The User
+                MessageBox.Show("An Error Occurred While Fetching The Last Product Code: " + ex.Message);
+            }
+
+            // Return The Last Product Code
+            return lastProductCode;
+        }
+
+        // Method To Generate The Next Product Code Based On The Last Product Code
+        private string GenerateNextProductCode(string lastProductCode)
+        {
+            // Extract The Numeric Part Of The Last Product Code (Ignoring The "P" Prefix)
+            string numericPart = lastProductCode.Substring(1);
+
+            // Increment The Numeric Part By 1
+            int nextNumber = int.Parse(numericPart) + 1;
+
+            // Format The New Product Code With The "P" Prefix And Padded With Zeros
+            string nextProductCode = "P" + nextNumber.ToString("D5");
+
+            // Return The Generated Product Code
+            return nextProductCode;
+        }
+
     }
 }
