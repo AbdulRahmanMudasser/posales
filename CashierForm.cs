@@ -32,6 +32,8 @@ namespace POSales
 
         string id;
 
+        bool hasCart = false;
+
         public CashierForm()
         {
             InitializeComponent();
@@ -41,6 +43,8 @@ namespace POSales
 
             // Get Transaction Number
             getTransactionNumber();
+
+            setDataGridViewColor();
 
             // Open Connection
             // connection.Open();
@@ -96,17 +100,27 @@ namespace POSales
             // Slide Button Animation For btnAddDiscount
             slider(btnAddDiscount);
 
-            // Initialize DiscountModule Window
-            DiscountModule discountModule = new DiscountModule(this);
+            if (hasCart)
+            {
+                // Initialize DiscountModule Window
+                DiscountModule discountModule = new DiscountModule(this);
 
-            // Set Discount Module Label Id Text
-            discountModule.lblId.Text = id;
+                // Set Discount Module Label Id Text
+                discountModule.lblId.Text = id;
 
-            // Set Discount Module Total Price Text
-            discountModule.txtTotalPrice.Text = price;
+                // Set Discount Module Total Price Text
+                discountModule.txtTotalPrice.Text = price;
 
-            // Show DiscountModule Dialog
-            discountModule.ShowDialog();
+                // Show DiscountModule Dialog
+                discountModule.ShowDialog();
+            }
+
+            else
+            {
+                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+
+                return;
+            }
         }
 
 
@@ -114,8 +128,18 @@ namespace POSales
         {
             slider(btnClearCart);
 
-            // Clear Cart
-            clearCart();
+            if (hasCart)
+            {
+                // Clear Cart
+                clearCart();
+            }
+
+            else
+            {
+                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+
+                return;
+            }
         }
 
         private void btnDailySales_Click(object sender, EventArgs e)
@@ -135,15 +159,25 @@ namespace POSales
 
         private void btnSettlePayment_Click(object sender, EventArgs e)
         {
-            slider(btnSettlePayment);
+            if (hasCart)
+            {
+                slider(btnSettlePayment);
 
-            SettlePaymentModule settlePaymentModule = new SettlePaymentModule(this);
+                SettlePaymentModule settlePaymentModule = new SettlePaymentModule(this);
 
-            string cleanedText = lblDisplayTotal.Text.Trim().Replace(" ", "");
+                string cleanedText = lblDisplayTotal.Text.Trim().Replace(" ", "");
 
-            settlePaymentModule.txtSale.Text = cleanedText;
+                settlePaymentModule.txtSale.Text = cleanedText;
 
-            settlePaymentModule.ShowDialog();
+                settlePaymentModule.ShowDialog();
+            }
+
+            else
+            {
+                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+
+                return;
+            }
         }
 
         #endregion buttons
@@ -151,41 +185,51 @@ namespace POSales
         /// CLEAR CART
         public void clearCart()
         {
-            try
+            if (hasCart)
             {
-                if (MessageBox.Show("Clear Cart?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                try
                 {
-                    // Open Connection
-                    connection.Open();
+                    if (MessageBox.Show("Clear Cart?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        // Open Connection
+                        connection.Open();
 
-                    // SQL Command to Clear Cart
-                    sqlCommand = new SqlCommand("DELETE FROM tbCart WHERE transactionNumber = @transactionNumber", connection);
+                        // SQL Command to Clear Cart
+                        sqlCommand = new SqlCommand("DELETE FROM tbCart WHERE transactionNumber = @transactionNumber", connection);
 
-                    // Add the brand Parameter to the SQL Command With the Value
-                    sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
+                        // Add the brand Parameter to the SQL Command With the Value
+                        sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
 
-                    // Execute the SQL Command to Delete Cart from Database
-                    sqlCommand.ExecuteNonQuery();
+                        // Execute the SQL Command to Delete Cart from Database
+                        sqlCommand.ExecuteNonQuery();
 
-                    // Close the Database Connection
-                    connection.Close();
+                        // Close the Database Connection
+                        connection.Close();
 
-                    // Display User that the Cart was Deleted Successfully
-                    MessageBox.Show("Cart Cleared", "POSales");
+                        // Display User that the Cart was Deleted Successfully
+                        MessageBox.Show("Cart Cleared", "POSales");
 
-                    // Load Cart
-                    loadCart();
+                        // Load Cart
+                        loadCart();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+
+                    // Display to the User That an Unexpected Exception Has Occurred
+                    MessageBox.Show("An Unexpected Exception Has Occurred While Clearing Cart Based On Transaction Number: " + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
 
-                // Display to the User That an Unexpected Exception Has Occurred
-                MessageBox.Show("An Unexpected Exception Has Occurred While Clearing Cart Based On Transaction Number: " + ex.Message);
+            else
+            {
+                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+
+                return;
             }
         }
 
@@ -296,7 +340,7 @@ namespace POSales
                         string.IsNullOrEmpty(price) || string.IsNullOrEmpty(quantity) || string.IsNullOrEmpty(discountValue) || string.IsNullOrEmpty(totalValue))
                     {
                         // Display Message If One or More Columns Contain Null or Empty Values
-                        MessageBox.Show("One or more columns contain null or empty values.");
+                        MessageBox.Show("One or More Columns Contain Null or Empty Values.");
                         continue;
                     }
 
@@ -308,6 +352,9 @@ namespace POSales
 
                     // Add New Row to DataGridView with Row Number, Product Code, Description, Price, Quantity, Discount Value, and Formatted Total Value
                     dgvCart.Rows.Add(i, id, productCode, description, price, quantity, discountValue, double.Parse(totalValue).ToString("#,##0.00"));
+
+                    // Set hasCart to true
+                    hasCart = true;
                 }
 
                 // Close DataReader After Reading All Data
@@ -542,6 +589,13 @@ namespace POSales
 
             // Retrieve Item Price From Eighth Column
             price = dgvCart[7, i].Value.ToString();
+        }
+
+        private void setDataGridViewColor()
+        {
+            dgvCart.DefaultCellStyle.ForeColor = Color.Black;
+
+            dgvCart.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
         }
     }
 }
