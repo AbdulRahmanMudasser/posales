@@ -261,7 +261,7 @@
             this.btnSearchProduct.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.btnSearchProduct.Size = new System.Drawing.Size(210, 50);
             this.btnSearchProduct.TabIndex = 2;
-            this.btnSearchProduct.Text = "   SearchProduct";
+            this.btnSearchProduct.Text = "   Search Product";
             this.btnSearchProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearchProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSearchProduct.UseVisualStyleBackColor = true;
@@ -403,6 +403,7 @@
             this.dgvCart.RowTemplate.Height = 24;
             this.dgvCart.Size = new System.Drawing.Size(870, 700);
             this.dgvCart.TabIndex = 3;
+            this.dgvCart.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCart_CellContentClick);
             this.dgvCart.SelectionChanged += new System.EventHandler(this.dgvCart_SelectionChanged);
             // 
             // Column1
