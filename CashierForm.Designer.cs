@@ -558,7 +558,7 @@
             this.lblVATableActual.BackColor = System.Drawing.Color.White;
             this.lblVATableActual.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVATableActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVATableActual.Location = new System.Drawing.Point(93, 582);
+            this.lblVATableActual.Location = new System.Drawing.Point(93, 581);
             this.lblVATableActual.Name = "lblVATableActual";
             this.lblVATableActual.Size = new System.Drawing.Size(123, 25);
             this.lblVATableActual.TabIndex = 17;
@@ -567,15 +567,16 @@
             // 
             // lblVATable
             // 
-            this.lblVATable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVATable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVATable.BackColor = System.Drawing.Color.White;
             this.lblVATable.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVATable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblVATable.Location = new System.Drawing.Point(4, 585);
             this.lblVATable.Name = "lblVATable";
-            this.lblVATable.Size = new System.Drawing.Size(90, 19);
+            this.lblVATable.Size = new System.Drawing.Size(90, 16);
             this.lblVATable.TabIndex = 16;
             this.lblVATable.Text = "VATable";
+            this.lblVATable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblVATActual
             // 
@@ -583,7 +584,7 @@
             this.lblVATActual.BackColor = System.Drawing.Color.White;
             this.lblVATActual.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVATActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVATActual.Location = new System.Drawing.Point(93, 539);
+            this.lblVATActual.Location = new System.Drawing.Point(93, 538);
             this.lblVATActual.Name = "lblVATActual";
             this.lblVATActual.Size = new System.Drawing.Size(123, 25);
             this.lblVATActual.TabIndex = 15;
@@ -592,15 +593,16 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.BackColor = System.Drawing.Color.White;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label10.Location = new System.Drawing.Point(4, 542);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 19);
+            this.label10.Size = new System.Drawing.Size(90, 16);
             this.label10.TabIndex = 14;
             this.label10.Text = "VAT";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDisountActual
             // 
@@ -608,7 +610,7 @@
             this.lblDisountActual.BackColor = System.Drawing.Color.White;
             this.lblDisountActual.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisountActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDisountActual.Location = new System.Drawing.Point(93, 496);
+            this.lblDisountActual.Location = new System.Drawing.Point(93, 495);
             this.lblDisountActual.Name = "lblDisountActual";
             this.lblDisountActual.Size = new System.Drawing.Size(123, 25);
             this.lblDisountActual.TabIndex = 13;
@@ -617,15 +619,16 @@
             // 
             // lblDiscount
             // 
-            this.lblDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDiscount.BackColor = System.Drawing.Color.White;
             this.lblDiscount.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiscount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDiscount.Location = new System.Drawing.Point(4, 499);
             this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(90, 19);
+            this.lblDiscount.Size = new System.Drawing.Size(90, 16);
             this.lblDiscount.TabIndex = 12;
             this.lblDiscount.Text = "Discount";
+            this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSalesTotalActual
             // 
@@ -633,7 +636,7 @@
             this.lblSalesTotalActual.BackColor = System.Drawing.Color.White;
             this.lblSalesTotalActual.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalesTotalActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblSalesTotalActual.Location = new System.Drawing.Point(93, 457);
+            this.lblSalesTotalActual.Location = new System.Drawing.Point(93, 453);
             this.lblSalesTotalActual.Name = "lblSalesTotalActual";
             this.lblSalesTotalActual.Size = new System.Drawing.Size(123, 25);
             this.lblSalesTotalActual.TabIndex = 11;
@@ -642,15 +645,16 @@
             // 
             // lblSalesTotal
             // 
-            this.lblSalesTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSalesTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSalesTotal.BackColor = System.Drawing.Color.White;
             this.lblSalesTotal.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalesTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSalesTotal.Location = new System.Drawing.Point(4, 457);
             this.lblSalesTotal.Name = "lblSalesTotal";
-            this.lblSalesTotal.Size = new System.Drawing.Size(90, 25);
+            this.lblSalesTotal.Size = new System.Drawing.Size(90, 16);
             this.lblSalesTotal.TabIndex = 9;
             this.lblSalesTotal.Text = "Sales Total";
+            this.lblSalesTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtBarcode
             // 
