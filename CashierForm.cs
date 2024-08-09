@@ -117,7 +117,7 @@ namespace POSales
 
             else
             {
-                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+                MessageBox.Show("The Cart Is Currently Empty\r\n\nPlease Add at Least One Product Before Applying a Discount", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return;
             }
@@ -136,7 +136,7 @@ namespace POSales
 
             else
             {
-                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+                MessageBox.Show("The Cart Is Currently Empty\r\n\nPlease Add at Least One Product Before Clearing It", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return;
             }
@@ -174,7 +174,7 @@ namespace POSales
 
             else
             {
-                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+                MessageBox.Show("The Cart Is Currently Empty\r\n\nPlease Add at Least One Product Before Settling the Payment", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return;
             }
@@ -185,52 +185,43 @@ namespace POSales
         /// CLEAR CART
         public void clearCart()
         {
-            if (hasCart)
+            try
             {
-                try
+                if (MessageBox.Show("Clear Cart?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show("Clear Cart?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        // Open Connection
-                        connection.Open();
+                    // Open Connection
+                    connection.Open();
 
-                        // SQL Command to Clear Cart
-                        sqlCommand = new SqlCommand("DELETE FROM tbCart WHERE transactionNumber = @transactionNumber", connection);
+                    // SQL Command to Clear Cart
+                    sqlCommand = new SqlCommand("DELETE FROM tbCart WHERE transactionNumber = @transactionNumber", connection);
 
-                        // Add the brand Parameter to the SQL Command With the Value
-                        sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
+                    // Add the brand Parameter to the SQL Command With the Value
+                    sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
 
-                        // Execute the SQL Command to Delete Cart from Database
-                        sqlCommand.ExecuteNonQuery();
+                    // Execute the SQL Command to Delete Cart from Database
+                    sqlCommand.ExecuteNonQuery();
 
-                        // Close the Database Connection
-                        connection.Close();
+                    // Close the Database Connection
+                    connection.Close();
 
-                        // Display User that the Cart was Deleted Successfully
-                        MessageBox.Show("Cart Cleared", "POSales");
+                    // Display User that the Cart was Deleted Successfully
+                    MessageBox.Show("Cart Cleared", "POSales");
 
-                        // Load Cart
-                        loadCart();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Close();
-                    }
-
-                    // Display to the User That an Unexpected Exception Has Occurred
-                    MessageBox.Show("An Unexpected Exception Has Occurred While Clearing Cart Based On Transaction Number: " + ex.Message);
+                    // Load Cart
+                    loadCart();
                 }
             }
-
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Cart Is Empty", "POSales", MessageBoxButtons.OK);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
 
-                return;
+                // Display to the User That an Unexpected Exception Has Occurred
+                MessageBox.Show("An Unexpected Exception Has Occurred While Clearing Cart Based On Transaction Number: " + ex.Message);
             }
+
         }
 
         /// GET TRANSACTION NUMBER
@@ -506,7 +497,7 @@ namespace POSales
                 if (txtBarcode.Text == string.Empty)
                 {
                     loadCart();
-                    
+
                     // Exit If TextBox Is Empty
                     return;
                 }
@@ -596,6 +587,186 @@ namespace POSales
             dgvCart.DefaultCellStyle.ForeColor = Color.Black;
 
             dgvCart.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+        }
+
+
+        private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Update & Delete Product By Cell Click from in tbProduct
+            string databaseOperation = dgvCart.Columns[e.ColumnIndex].Name;
+
+            int availableQuantity = 0;
+
+            try
+            {
+                // Open Database Connection
+                connection.Open();
+
+                sqlCommand = new SqlCommand("SELECT SUM(quantity) as quantity FROM tbProduct WHERE productCode LIKE @productCode GROUP BY productCode", connection);
+
+                sqlCommand.Parameters.AddWithValue("@productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                var result = sqlCommand.ExecuteScalar();
+
+                if (result != null)
+                {
+                    availableQuantity = int.Parse(result.ToString());
+                }
+
+                // Close Connection
+                connection.Close();
+            }
+
+            catch (Exception ex)
+            {
+                // Close Connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+                // Display User that an Unexpected Exception has Occurred
+                MessageBox.Show("An Unexpected Exception Has Occurred While Getting Quantity of Product" + ex.Message);
+            }
+
+
+            if (databaseOperation == "IncrementProduct")
+            {
+                try
+                {
+                    if (int.Parse(dgvCart.Rows[e.RowIndex].Cells[5].Value.ToString()) < availableQuantity - 1)
+                    {
+                        // SQL Query
+                        string query = "UPDATE tbCart SET quantity = quantity + @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
+
+                        // Execute Query
+                        connectionClass.executeQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                        // Load Cart
+                        loadCart();
+                    }
+
+                    else if (int.Parse(dgvCart.Rows[e.RowIndex].Cells[5].Value.ToString()) < availableQuantity)
+                    {
+                        // Display Warning Message That Quantity Will Be Finished
+                        var result = MessageBox.Show($"This Will Consume All Remaining Stock ({availableQuantity}). Do You Want to Proceed?", "POSales", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            return; // Exit the function if user cancels
+                        }
+
+                        else if (result == DialogResult.OK)
+                        {
+                            // SQL Query
+                            string queryInternal = "UPDATE tbCart SET quantity = quantity + @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
+
+                            // Execute Query
+                            connectionClass.executeQueryWithThreeParameters(queryInternal, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                            // Load Cart
+                            loadCart();
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show($"Out of Stock\r\n\nRemaining Quantity In Hand Is {availableQuantity}", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        return;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    // Close Connection
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception Has Occurred While Incrementing Product" + ex.Message);
+                }
+            }
+
+            else if (databaseOperation == "DecrementProduct")
+            {
+                try
+                {
+                    if (int.Parse(dgvCart.Rows[e.RowIndex].Cells[5].Value.ToString()) > 1)
+                    {
+                        // SQL Query
+                        string query = "UPDATE tbCart SET quantity = quantity - @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
+
+                        // Execute Query
+                        connectionClass.executeQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                        // Load Cart
+                        loadCart();
+                    }
+
+                    else
+                    {
+                        // MessageBox.Show($"Out of Stock\r\n\nRemaining Quantity In Hand Is {i}", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // return;
+
+                        // To Delete Product in Product Table
+                        if (MessageBox.Show("Remove This Product From Cart?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            // SQL Query
+                            string query = "DELETE FROM tbCart WHERE id LIKE @id";
+
+                            // Execute Query
+                            connectionClass.executeQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+                            // Load Cart
+                            loadCart();
+
+                            // If Cart Is Empty Set hasCart to false
+                            if (dgvCart.Rows.Count == 0)
+                            {
+                                hasCart = false;
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    // Close Connection
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+
+                    // Display User that an Unexpected Exception has Occurred
+                    MessageBox.Show("An Unexpected Exception Has Occurred While Incrementing Product" + ex.Message);
+                }
+            }
+
+            else if (databaseOperation == "RemoveProduct")
+            {
+                // To Delete Product in Product Table
+                if (MessageBox.Show("Remove This Product From Cart?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    // SQL Query
+                    string query = "DELETE FROM tbCart WHERE id LIKE @id";
+
+                    // Execute Query
+                    connectionClass.executeQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+                    // Load Cart
+                    loadCart();
+
+                    // If Cart Is Empty Set hasCart to false
+                    if (dgvCart.Rows.Count == 0)
+                    {
+                        hasCart = false;
+                    }
+                }
+            }
         }
     }
 }
