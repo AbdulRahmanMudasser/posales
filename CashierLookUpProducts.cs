@@ -62,7 +62,7 @@ namespace POSales
                 // sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE CONCAT(p.description, b.brand, c.category) LIKE '%" +txtSearchProduct.Text + "%'", connection);
 
                 // Search By ProductCode, Barcode, Category, Brand, Also for Loading Products
-                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.brand, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
+                sqlCommand = new SqlCommand("SELECT p.productCode, p.barcode, p.description, b.abbreviation, c.category, p.price, p.quantity, p.reorder, p.weight from tbProduct AS p INNER JOIN tbBrand as b ON b.id = p.brandId INNER JOIN tbCategory AS c on c.id = p.categoryId WHERE p.productCode LIKE '%" + txtSearchProduct.Text + "%' OR p.barcode LIKE '%" + txtSearchProduct.Text + "%' OR b.brand LIKE '%" + txtSearchProduct.Text + "%' OR c.category LIKE '%" + txtSearchProduct.Text + "%'", connection);
 
                 // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
                 dataReader = sqlCommand.ExecuteReader();
