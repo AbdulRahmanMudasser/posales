@@ -178,6 +178,7 @@
             this.txtSearchProduct.MaxLength = 32767;
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.PasswordChar = '\0';
+            this.txtSearchProduct.PromptText = "Search Products";
             this.txtSearchProduct.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchProduct.SelectedText = "";
             this.txtSearchProduct.SelectionLength = 0;
@@ -231,16 +232,18 @@
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Brand";
+            this.Column4.HeaderText = "Brand Abbr";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 150;
+            this.Column4.Width = 180;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Category";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
+            this.Column5.Visible = false;
+            this.Column5.Width = 125;
             // 
             // Column6
             // 

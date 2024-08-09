@@ -154,7 +154,7 @@
   <data name="AddToCart.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAhhJREFUSEvtlD9oFEEUxkf8B6KgTSo7Oxv/hIiNXJGbdwsGK1MIio2NhViKRERM
+        DQAACw0B7QfALAAAAhhJREFUSEvtlD9oFEEUxkf8B6KgTSo7Oxv/hIiNXJGbdwsGK1MIio2NhViKRERM
         aZEEjHiSy5uL2JwgaiciNoKG+IegghCi2IiIVYrERJLzm9nvPO92N3Gj6fKDj733zey8N2/m1qyTH6v3
         jbhpI/oWzwt0/zPirkI16DlUN0V3giNrQG9tI5LMYUev6BjTXT2A+AX8lzn0BIWe4QopiH401n1lhLiy
         Dy89a1tkeVmdwrOOdY5zlTasG4AWTaG2nU5+Ck83IdE8Eg3RacNWT4cqinqYThLRflOsFhgliW7v5k4u
@@ -186,7 +186,7 @@
   <data name="btnChangePassword.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAA0xJREFUSEvNlmmITlEYx2eMxhJCZPkgmcFYCjMNQkSIQVmK+YBPlrKU7OPDICUp
+        DAAACwwBP0AiyAAAA0xJREFUSEvNlmmITlEYx2eMxhJCZPkgmcFYCjMNQkSIQVmK+YBPlrKU7OPDICUp
         PpBsWZIlJkUpvshWxlZ22RVRZE+EOH7/e56rd96Zufe9Uvzq15w75znPucs5z3mz/kucc02wFHfjWbyL
         57ECZ2JbC/07kLA+LsW3GMVX3IgtbeifQ5I2eAHFN9yFY7AjdsZOOAjX4TsUz7DQUiSHwS3wkTLBGeyO
         C/Cq/pHCY1yLuhHdmPiExZYqcxiUg6eUAQ5iIYY3URvvcTQuC66ce4HNLWVmMGBqMNS5S9gD9X3v4aEI
