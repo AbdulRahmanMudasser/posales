@@ -28,8 +28,6 @@ namespace POSales
         /// TO READ DATA RETRIEVED FROM DATABASE
         SqlDataReader dataReader;
 
-        int quantity;
-
         string price;
 
         string id;
@@ -37,9 +35,6 @@ namespace POSales
         public CashierForm()
         {
             InitializeComponent();
-
-            // Close All the SubMenus When Application Starts
-            customizeDesign();
 
             // Establish Connection
             connection = new SqlConnection(connectionClass.DatabaseConnection());
@@ -55,88 +50,6 @@ namespace POSales
         }
 
         #region buttons
-        private void customizeDesign()
-        {
-            //panelSubProduct.Visible = false;
-            //panelSubStock.Visible = false;
-            //panelSubHistory.Visible = false;
-            //panelSubSetting.Visible = false;
-        }
-
-        private void hideSubMenu()
-        {
-            //// for sub products panel
-            //if (panelSubProduct.Visible == true)
-            //{
-            //    panelSubProduct.Visible = false;
-            //}
-
-            //// for sub stock panel
-            //if (panelSubStock.Visible == true)
-            //{
-            //    panelSubStock.Visible = false;
-            //}
-
-            //// for sub history panel
-            //if (panelSubHistory.Visible == true)
-            //{
-            //    panelSubHistory.Visible = false;
-            //}
-
-            //// for sub setting panel
-            //if (panelSubSetting.Visible == true)
-            //{
-            //    panelSubSetting.Visible = false;
-            //}
-        }
-
-        private void showSubMenu(Panel subMenu)
-        {
-            if (subMenu.Visible == false)
-            {
-                hideSubMenu();
-                subMenu.Visible = true;
-            }
-
-            else
-            {
-                subMenu.Visible = false;
-            }
-        }
-
-        /// VARIABLE THAT HOLDS CURRENTLY ACTIVE FORM
-        private Form activeForm = null;
-
-        /// METHDO TO OPEN CHILD FORM INSIDE MAIN FORM
-        public void openChildrenForm(Form childForm)
-        {
-            // Close the Current Form, If There is an Active Form
-            activeForm?.Close();
-
-            // Set New Child Form as Active Form
-            activeForm = childForm;
-
-            // Set Child Form to be Non-Top Level, Making it Child Control
-            childForm.TopLevel = false;
-
-            // Remove the Border of the Child Form
-            childForm.FormBorderStyle = FormBorderStyle.None;
-
-            // Dock the Child Form to Fill the Parent Container
-            childForm.Dock = DockStyle.Fill;
-
-            // Add the Child Form to the panelMain Controls Collection
-            panelMain.Controls.Add(childForm);
-
-            // Assign Panel Main's Tag Child Form
-            panelMain.Tag = childForm;
-
-            // Bring the Child Form to Front
-            childForm.BringToFront();
-
-            // Show the Child Form
-            childForm.Show();
-        }
 
         private void picClose_Click(object sender, EventArgs e)
         {
@@ -200,6 +113,9 @@ namespace POSales
         private void btnClearCart_Click(object sender, EventArgs e)
         {
             slider(btnClearCart);
+
+            // Clear Cart
+            clearCart();
         }
 
         private void btnDailySales_Click(object sender, EventArgs e)
@@ -231,6 +147,47 @@ namespace POSales
         }
 
         #endregion buttons
+
+        /// CLEAR CART
+        public void clearCart()
+        {
+            try
+            {
+                if (MessageBox.Show("Clear Cart?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    // Open Connection
+                    connection.Open();
+
+                    // SQL Command to Clear Cart
+                    sqlCommand = new SqlCommand("DELETE FROM tbCart WHERE transactionNumber = @transactionNumber", connection);
+
+                    // Add the brand Parameter to the SQL Command With the Value
+                    sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
+
+                    // Execute the SQL Command to Delete Cart from Database
+                    sqlCommand.ExecuteNonQuery();
+
+                    // Close the Database Connection
+                    connection.Close();
+
+                    // Display User that the Cart was Deleted Successfully
+                    MessageBox.Show("Cart Cleared", "POSales");
+
+                    // Load Cart
+                    loadCart();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+                // Display to the User That an Unexpected Exception Has Occurred
+                MessageBox.Show("An Unexpected Exception Has Occurred While Clearing Cart Based On Transaction Number: " + ex.Message);
+            }
+        }
 
         /// GET TRANSACTION NUMBER
         public void getTransactionNumber()
@@ -290,64 +247,6 @@ namespace POSales
                 MessageBox.Show("An unexpected exception has occurred while fetching records based on transaction number: " + ex.Message);
             }
         }
-
-        /// LOAD CART
-        //public void loadCart()
-        //{
-        //    // To Keep Track of Row Number
-        //    int i = 0;
-
-        //    // To Calculate Total
-        //    double total = 0.0;
-
-        //    // To Calculate Discount
-        //    double discount = 0.0;
-
-        //    // Clear All Rows from DataGridView to Prepare for Fresh Data
-        //    dgvCart.Rows.Clear();
-
-        //    // Open Database Connection
-        //    connection.Open();
-
-        //    // Loading Products
-        //    sqlCommand = new SqlCommand("SELECT c.id, c.productCode, p.description, c.price, c.quantity, c.discount, c.total FROM tbCart AS c INNER JOIN tbProduct AS p ON c.productCode = p.productCode WHERE c.transactionNumber LIKE @transactionNumber AND c.status LIKE 'Pending'", connection);
-
-        //    // Add the product Parameters to the SQL Command With the Value
-        //    sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
-
-        //    // Execute SQL Command, Obtain SQLDataReader to Read Data from Database
-        //    dataReader = sqlCommand.ExecuteReader();
-
-        //    // Iterate through the DataReader to Read Each Row of Data
-        //    while (dataReader.Read())
-        //    {
-        //        // Increment Counter for Each Row
-        //        i++;
-
-        //        // Calculate Total
-        //        total += Convert.ToDouble(dataReader["total"].ToString());
-
-        //        // Calculate Discount
-        //        discount += Convert.ToDouble(dataReader["discount"].ToString());
-
-        //        // Add New Row to DataGridView With Counter, Id, Brand Values from the Current Row
-        //        dgvCart.Rows.Add(i, dataReader["id"].ToString(), dataReader["productCode"].ToString(), dataReader["description"].ToString(), dataReader["price"].ToString(), dataReader["quantity"].ToString(), dataReader["discount"].ToString(), double.Parse(dataReader["total"].ToString()).ToString("#, ##0.00"));
-        //    }
-
-        //    // Close DataReader After Reading All Data
-        //    dataReader.Close();
-
-        //    // Close Database Connection
-        //    connection.Close();
-
-        //    lblSalesTotalActual.Text = total.ToString("#, ##0.00");
-
-        //    lblDisountActual.Text = discount.ToString("#, ##0.00");
-
-        //    MessageBox.Show(lblSalesTotalActual.Text);
-
-        //    getCartTotal();
-        //}
 
         public void loadCart()
         {
@@ -436,7 +335,6 @@ namespace POSales
             }
         }
 
-
         /// GET CART TOTAL
         public void getCartTotal()
         {
@@ -501,7 +399,7 @@ namespace POSales
                     if (quantity < (int.Parse(txtBarcodeQuantity.Text) + cartQuantity))
                     {
                         // Display Warning Message If Quantity Is Insufficient
-                        MessageBox.Show($"Unable to proceed. Remaining quantity on hand is {quantity}.", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Unable To Proceed. Remaining Quantity On Hand Is {quantity}.", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return; // Exit the function
                     }
 
@@ -560,6 +458,8 @@ namespace POSales
                 // Check If TextBox Is Empty
                 if (txtBarcode.Text == string.Empty)
                 {
+                    loadCart();
+                    
                     // Exit If TextBox Is Empty
                     return;
                 }
@@ -610,7 +510,7 @@ namespace POSales
                         /// Insert Into Cart (To Be Implemented)
 
                         // Add Product to Cart
-                        addToCart(_productCode, _price, _quantity);
+                        addToCart(_productCode, _price, quantity);
                     }
                     else
                     {
@@ -643,158 +543,5 @@ namespace POSales
             // Retrieve Item Price From Eighth Column
             price = dgvCart[7, i].Value.ToString();
         }
-
-
-        //public void addToCart(string productCode, double price, int quantity)
-        //{
-        //    try
-        //    {
-        //        /// Get Product Based On Transaction Number & Product Code
-
-        //        string id = "";
-
-        //        int cartQuantity = 0;
-
-        //        bool productFound = false;
-
-        //        // Open Database Connection
-        //        connection.Open();
-
-        //        // SQL Command to Insert a New Cart In Into the tbCart Table
-        //        sqlCommand = new SqlCommand("SELECT 8 FROM tbCart WHERE transactionNumbmer = @transactionNumbmer AND productCode = @productCode", connection);
-
-        //        // Add the stock in Parameters to the SQL Command With the Value
-        //        sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
-        //        sqlCommand.Parameters.AddWithValue("@productCode", productCode);
-
-        //        // Execute SQL Command, Obtain SQLDataReader to Read Data From Database
-        //        dataReader = sqlCommand.ExecuteReader();
-
-        //        // Read Data From DataReader
-        //        dataReader.Read();
-
-        //        if (dataReader.HasRows)
-        //        {
-        //            id = dataReader["quantity"].ToString();
-
-        //            cartQuantity = int.Parse(dataReader["quantity"].ToString());
-
-        //            productFound = true;
-        //        } 
-        //        else
-        //        {
-        //            productFound = false;
-        //        }
-
-        //        // Close DataReader After Reading All Data
-        //        dataReader.Close();
-
-        //        // Close the Database Connection
-        //        connection.Close();
-
-        //        /// Insert Into Cart Table
-
-        //        if (productFound)
-        //        {
-        //            if (quantity < (int.Parse(txtBarcodeQuantity.Text) + cartQuantity))
-        //            {
-        //                MessageBox.Show("Unable To Proceed. \nRemaining Quantity On Hand Is " + quantity, "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-        //                return;
-        //            }
-        //            else
-        //            {
-        //                // SQL Command to Update quantity in tbCart
-        //                sqlCommand = new SqlCommand("UPDATE tbCart SET quantity = quantity + " + quantity + ") WHERE id = '" + id + "'", connection);
-
-        //                // Execute the SQL Command to Update tbCart
-        //                sqlCommand.ExecuteNonQuery();
-
-        //                // Close the Database Connection
-        //                connection.Close();
-
-        //                textBox1.SelectionStart = 0;
-
-        //                textBox1.SelectionLength = textBox1.Text.Length;
-
-        //                // Load Cart
-        //                loadCart();
-        //            }
-        //        }
-
-        //        else
-        //        {
-
-        //            // Open Database Connection
-        //            connection.Open();
-
-        //            // SQL Command to Insert a New Cart In Into the tbCart Table
-        //            sqlCommand = new SqlCommand("INSERT INTO tbCart (transactionNumber, productCode, price, quantity, sDate, cashier) VALUES (@transactionNumber, @productCode, @price, @quantity, @sDate, @cashier)", connection);
-
-        //            // Add the stock in Parameters to the SQL Command With the Value
-        //            sqlCommand.Parameters.AddWithValue("@transactionNumber", lblTransactionNumberActual.Text);
-        //            sqlCommand.Parameters.AddWithValue("@productCode", productCode);
-        //            sqlCommand.Parameters.AddWithValue("@price", price);
-        //            sqlCommand.Parameters.AddWithValue("@quantity", quantity);
-        //            sqlCommand.Parameters.AddWithValue("@sDate", DateTime.Now);
-        //            sqlCommand.Parameters.AddWithValue("@cashier", lblCashierName.Text);
-
-        //            // Execute the SQL Command to Insert the New Category Into the Database
-        //            sqlCommand.ExecuteNonQuery();
-
-        //            // Close the Database Connection
-        //            connection.Close();
-
-        //            // Load Cart
-        //            loadCart();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Close Connection
-        //        connection.Close();
-
-        //        // Display User that an Unexpected Exception has Occurred
-        //        MessageBox.Show("An Unexpected Exception has Occurred while Adding to Cart" + ex.Message);
-        //    }
-        //}
-
-        //public void getCartTotal()
-        //{
-        //    try
-        //    {
-        //        // Remove any unwanted characters like commas
-        //        string discountText = lblDisountActual.Text.Replace(",", "").Replace(" ", "").Trim();
-        //        string salesText = lblSalesTotalActual.Text.Replace(",", "").Replace(" ", "").Trim();
-
-        //        // Try to parse the cleaned text to doubles
-        //        if (!double.TryParse(discountText, out double discount))
-        //        {
-        //            MessageBox.Show("Invalid discount format");
-        //            return;
-        //        }
-
-        //        if (!double.TryParse(salesText, out double totalSales))
-        //        {
-        //            MessageBox.Show("Invalid sales total format");
-        //            return;
-        //        }
-
-        //        double sales = totalSales - discount;
-
-        //        // 12% of Payable Tax (Output Tax Less Input Tax)
-        //        double VAT = sales * 0.12;
-
-        //        double VATable = sales - VAT;
-
-        //        lblVATActual.Text = VAT.ToString("#,##0.00");
-        //        lblVATableActual.Text = VATable.ToString("#,##0.00");
-        //        lblDisplayTotal.Text = VATable.ToString("#,##0.00");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"An error occurred: {ex.Message}");
-        //    }
-        //}
     }
 }

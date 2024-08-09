@@ -23,9 +23,6 @@ namespace POSales
         /// CUSTOM CLASS FOR MANAGING DATABASE CONNECTIONS
         DatabaseConnectionClass connectionClass = new DatabaseConnectionClass();
 
-        /// TO READ DATA RETRIEVED FROM DATABASE
-        SqlDataReader dataReader;
-
         /// CASHIER FORM
         CashierForm cashierForm;
 
@@ -114,213 +111,70 @@ namespace POSales
             txtCash.Text += btnNine.Text;
         }
 
-        //private void BtnEnter_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Check If The Change Amount Is Less Than Zero Or If The Cash Amount Is Empty
-        //        if ((double.Parse(txtChange.Text) < 0) || txtCash.Text.Equals(""))
-        //        {
-        //            // Display A Message Box With A Warning If The Amount Is Insufficient
-        //            MessageBox.Show("Insufficient Amount", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-        //            // Return From The Method Without Proceeding
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            // Iterate Through Each Row In The Cart
-        //            for (int i = 0; i < cashierForm.dgvCart.Rows.Count; i++)
-        //            {
-        //                // Open The Database Connection
-        //                connection.Open();
-
-        //                // Create A SQL Command To Update The Product Quantity
-        //                SqlCommand sqlCommand = new SqlCommand("UPDATE tbProduct SET quantity = quantity - @quantity WHERE productCode = @productCode", connection);
-
-        //                // Add Parameters To The SQL Command
-        //                sqlCommand.Parameters.AddWithValue("@quantity", int.Parse(cashierForm.dgvCart.Rows[i].Cells[5].Value.ToString()));
-        //                sqlCommand.Parameters.AddWithValue("@productCode", cashierForm.dgvCart.Rows[i].Cells[2].Value.ToString());
-
-        //                // Execute The SQL Command To Update The Product Quantity
-        //                sqlCommand.ExecuteNonQuery();
-
-        //                // Close The Database Connection
-        //                connection.Close();
-
-        //                // Open The Database Connection Again
-        //                connection.Open();
-
-        //                // Create A SQL Command To Update The Cart Status
-        //                SqlCommand sqlCommand = new SqlCommand("UPDATE tbCart SET status = 'Sold' WHERE id = @id", connection);
-
-        //                // Add Parameters To The SQL Command
-        //                sqlCommand.Parameters.AddWithValue("@id", int.Parse(cashierForm.dgvCart.Rows[i].Cells[1].Value.ToString()));
-
-        //                // Execute The SQL Command To Update The Cart Status
-        //                sqlCommand.ExecuteNonQuery();
-
-        //                // Close The Database Connection
-        //                connection.Close();
-        //            }
-
-        //            // Display A Message Box To Inform The User That The Payment Has Been Charged
-        //            MessageBox.Show("Payment Charged", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //            // Call The getTransactionNumber Method To Get The Transaction Number
-        //            cashierForm.getTransactionNumber();
-
-        //            // Call The loadCart Method To Load The Cart
-        //            cashierForm.loadCart();
-
-        //            // Dispose Of The Current Form
-        //            this.Dispose();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Ensure The Database Connection Is Closed In Case Of An Exception
-        //        if (connection.State == ConnectionState.Open)
-        //        {
-        //            connection.Close();
-        //        }
-
-        //        // Display A Message Box To Inform The User That An Unexpected Exception Has Occurred
-        //        MessageBox.Show($"An Unexpected Exception Has Occurred While Charging Payment: {ex.Message}");
-        //    }
-        //}
-
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            try
+            if (MessageBox.Show("Settle Payment?", "POSales", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                // Validate the change amount and cash amount
-                if (!double.TryParse(txtChange.Text, out double change) || change < 0 || string.IsNullOrEmpty(txtCash.Text))
+                try
                 {
-                    MessageBox.Show("Insufficient Amount", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Open the database connection if not opened already
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
-
-                foreach (DataGridViewRow row in cashierForm.dgvCart.Rows)
-                {
-                    if (row.Cells[5].Value == null || row.Cells[2].Value == null || row.Cells[1].Value == null)
-                        continue;
-
-                    // Update product quantity
-                    using (SqlCommand cmdProduct = new SqlCommand("UPDATE tbProduct SET quantity = quantity - @quantity WHERE productCode = @productCode", connection))
+                    // Validate the change amount and cash amount
+                    if (!double.TryParse(txtChange.Text, out double change) || change < 0 || string.IsNullOrEmpty(txtCash.Text))
                     {
-                        cmdProduct.Parameters.AddWithValue("@quantity", int.Parse(row.Cells[5].Value.ToString()));
-                        cmdProduct.Parameters.AddWithValue("@productCode", row.Cells[2].Value.ToString());
-                        cmdProduct.ExecuteNonQuery();
+                        MessageBox.Show("Insufficient Amount", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    // Update cart status
-                    using (SqlCommand cmdCart = new SqlCommand("UPDATE tbCart SET status = 'Sold' WHERE id = @id", connection))
+                    // Open the database connection if not opened already
+                    if (connection.State != ConnectionState.Open)
                     {
-                        cmdCart.Parameters.AddWithValue("@id", int.Parse(row.Cells[1].Value.ToString()));
-                        cmdCart.ExecuteNonQuery();
+                        connection.Open();
                     }
-                }
 
-                // Close the database connection
-                connection.Close();
+                    foreach (DataGridViewRow row in cashierForm.dgvCart.Rows)
+                    {
+                        if (row.Cells[5].Value == null || row.Cells[2].Value == null || row.Cells[1].Value == null)
+                            continue;
 
-                // Inform user and update the UI
-                MessageBox.Show("Payment Charged", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Update product quantity
+                        using (SqlCommand cmdProduct = new SqlCommand("UPDATE tbProduct SET quantity = quantity - @quantity WHERE productCode = @productCode", connection))
+                        {
+                            cmdProduct.Parameters.AddWithValue("@quantity", int.Parse(row.Cells[5].Value.ToString()));
+                            cmdProduct.Parameters.AddWithValue("@productCode", row.Cells[2].Value.ToString());
+                            cmdProduct.ExecuteNonQuery();
+                        }
 
-                cashierForm.getTransactionNumber();
-                
-                cashierForm.loadCart();
-                
-                this.Dispose();
-            }
-            catch (Exception ex)
-            {
-                // Ensure the database connection is closed in case of an exception
-                if (connection.State == ConnectionState.Open)
-                {
+                        // Update cart status
+                        using (SqlCommand cmdCart = new SqlCommand("UPDATE tbCart SET status = 'Sold' WHERE id = @id", connection))
+                        {
+                            cmdCart.Parameters.AddWithValue("@id", int.Parse(row.Cells[1].Value.ToString()));
+                            cmdCart.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Close the database connection
                     connection.Close();
-                }
 
-                MessageBox.Show($"An Unexpected Exception Has Occurred While Charging Payment: {ex.Message}");
+                    // Inform user and update the UI
+                    MessageBox.Show("Payment Charged", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    cashierForm.getTransactionNumber();
+
+                    cashierForm.loadCart();
+
+                    this.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    // Ensure the database connection is closed in case of an exception
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+
+                    MessageBox.Show($"An Unexpected Exception Has Occurred While Charging Payment: {ex.Message}");
+                }
             }
         }
-
-
-        //private void btnEnter_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Check If Change Amount Is Less Than Zero Or Cash Amount Is Empty
-        //        if (double.Parse(txtChange.Text) < 0 || string.IsNullOrEmpty(txtCash.Text))
-        //        {
-        //            // Display Warning Message For Insufficient Amount
-        //            MessageBox.Show("Insufficient Amount", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-
-        //        // Iterate Through Each Row In The Cart
-        //        foreach (DataGridViewRow row in cashierForm.dgvCart.Rows)
-        //        {
-
-        //            // Update Product Quantity In Database
-        //            UpdateDatabase(
-        //                "UPDATE tbProduct SET quantity = quantity - @quantity WHERE productCode = @productCode",
-        //                new SqlParameter("@quantity", int.Parse(row.Cells[5].Value.ToString())),
-        //                new SqlParameter("@productCode", row.Cells[2].Value.ToString())
-        //            );
-
-        //            // Update Cart Status In Database
-        //            UpdateDatabase(
-        //                "UPDATE tbCart SET status = 'Sold' WHERE id = @id",
-        //                new SqlParameter("@id", int.Parse(row.Cells[1].Value.ToString()))
-        //            );
-        //        }
-
-        //        // Display Information Message For Charged Payment
-        //        MessageBox.Show("Payment Charged", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //        // Call Method To Get Transaction Number
-        //        cashierForm.getTransactionNumber();
-
-        //        // Call Method To Load Cart
-        //        cashierForm.loadCart();
-
-        //        // Dispose Of Current Form
-        //        this.Dispose();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Ensure Database Connection Is Closed In Case Of Exception
-        //        if (connection.State == ConnectionState.Open)
-        //            connection.Close();
-
-        //        // Display Error Message For Unexpected Exception
-        //        MessageBox.Show($"An Unexpected Exception Has Occurred While Charging Payment: {ex.Message}");
-        //    }
-        //}
-
-        //private void UpdateDatabase(string query, params SqlParameter[] parameters)
-        //{
-        //    // Open Database Connection And Execute Query
-        //    using (connection)
-        //    {
-        //        connection.Open();
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            command.Parameters.AddRange(parameters);
-        //            command.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
-
 
         private void btnClear_Click(object sender, EventArgs e)
         {
