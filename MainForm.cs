@@ -225,7 +225,7 @@ namespace POSales
         private void btnLogout_Click(object sender, EventArgs e)
         {
             hideSubMenu();
-
+            
             if (MessageBox.Show("Are You Sure You Want To Log Out?\n\nYou Will Be Returned To The Login Screen", "POSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Hide();

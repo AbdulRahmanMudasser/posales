@@ -160,29 +160,23 @@ namespace POSales
         {
             slider(btnLogout);
 
-            if (MessageBox.Show("Are You Sure You Want To Log Out?\n\nThe Application Will Close Upon Confirmation", "POSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dgvCart.Rows.Count > 0)
             {
-                this.Hide();
+                MessageBox.Show("You Have Items in Your Cart\r\nPlease Cancel the Transaction Before Logging Out", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                LoginForm loginForm = new LoginForm();
-
-                loginForm.ShowDialog();
+                return;
             }
+
+            navigateToLoginForm();
         }
 
         private void btnSettlePayment_Click(object sender, EventArgs e)
         {
+            slider(btnSettlePayment);
+
             if (hasCart)
             {
-                slider(btnSettlePayment);
-
-                SettlePaymentModule settlePaymentModule = new SettlePaymentModule(this);
-
-                string cleanedText = lblDisplayTotal.Text.Trim().Replace(" ", "");
-
-                settlePaymentModule.txtSale.Text = cleanedText;
-
-                settlePaymentModule.ShowDialog();
+                settlePaymentModule();
             }
 
             else
@@ -194,7 +188,34 @@ namespace POSales
         }
 
         #endregion buttons
+        
+        
+        /// SETTLE PAYMENT
+        private void settlePaymentModule()
+        {
+            SettlePaymentModule settlePaymentModule = new SettlePaymentModule(this);
 
+            string cleanedText = lblDisplayTotal.Text.Trim().Replace(" ", "");
+
+            settlePaymentModule.txtSale.Text = cleanedText;
+
+            settlePaymentModule.ShowDialog();
+        }
+        
+        
+        /// LOGOUT
+        private void navigateToLoginForm()
+        {
+            if (MessageBox.Show("Are You Sure You Want To Log Out?\n\nThe Application Will Close Upon Confirmation", "POSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+
+                LoginForm loginForm = new LoginForm();
+
+                loginForm.ShowDialog();
+            }
+        }
+        
         /// CLEAR CART
         public void clearCart()
         {
