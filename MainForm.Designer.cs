@@ -51,7 +51,7 @@
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.lblName = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -443,7 +443,7 @@
             // 
             // panelLogo
             // 
-            this.panelLogo.Controls.Add(this.lblName);
+            this.panelLogo.Controls.Add(this.lblUsername);
             this.panelLogo.Controls.Add(this.lblRole);
             this.panelLogo.Controls.Add(this.pictureBox1);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -453,23 +453,24 @@
             this.panelLogo.TabIndex = 1;
             this.panelLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLogo_Paint);
             // 
-            // lblName
+            // lblUsername
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(69, 105);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(105, 21);
-            this.lblName.TabIndex = 1;
-            this.lblName.Text = "User Name";
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.ForeColor = System.Drawing.Color.White;
+            this.lblUsername.Location = new System.Drawing.Point(69, 105);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(105, 21);
+            this.lblUsername.TabIndex = 1;
+            this.lblUsername.Text = "User Name";
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRole.ForeColor = System.Drawing.Color.White;
             this.lblRole.Location = new System.Drawing.Point(58, 126);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(126, 21);
+            this.lblRole.Size = new System.Drawing.Size(125, 22);
             this.lblRole.TabIndex = 0;
             this.lblRole.Text = "Administrator";
             // 
@@ -547,7 +548,7 @@
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblRole;
-        private System.Windows.Forms.Label lblName;
+        public System.Windows.Forms.Label lblUsername;
     }
 }
 

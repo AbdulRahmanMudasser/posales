@@ -57,9 +57,13 @@ namespace POSales
 
         private void picClose_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Exit Application?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are You Sure You Want To Exit Cashier Application?\n\nYou Will Be Returned To The Login Screen", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Application.Exit();
+                this.Hide();
+
+                LoginForm loginForm = new LoginForm();
+
+                loginForm.ShowDialog();
             }
         }
 
@@ -155,6 +159,15 @@ namespace POSales
         private void btnLogout_Click(object sender, EventArgs e)
         {
             slider(btnLogout);
+
+            if (MessageBox.Show("Are You Sure You Want To Log Out?\n\nThe Application Will Close Upon Confirmation", "POSales", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+
+                LoginForm loginForm = new LoginForm();
+
+                loginForm.ShowDialog();
+            }
         }
 
         private void btnSettlePayment_Click(object sender, EventArgs e)
