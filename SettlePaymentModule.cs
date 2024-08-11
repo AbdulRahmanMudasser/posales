@@ -161,6 +161,8 @@ namespace POSales
 
                     cashierForm.loadCart();
 
+                    CashierForm.hasCart = false;
+
                     this.Dispose();
                 }
                 catch (Exception ex)
@@ -187,9 +189,6 @@ namespace POSales
 
         private void txtCash_TextChanged(object sender, EventArgs e)
         {
-            // Debug output to track event trigger
-            Debug.WriteLine("txtCash_TextChanged event triggered.");
-
             try
             {
                 double Sale = 0;
@@ -199,15 +198,11 @@ namespace POSales
                 string saleText = txtSale.Text.Trim();
                 string cashText = txtCash.Text.Trim();
 
-                // Debug output for trimmed saleText and cashText
-                Debug.WriteLine($"Trimmed txtSale.Text: {saleText}, Trimmed txtCash.Text: {cashText}");
-
                 // Check if the txtSale text box contains a valid number
                 if (!double.TryParse(saleText, out Sale))
                 {
                     // If not, set the default value
                     txtChange.Text = "0.00";
-                    Debug.WriteLine("Invalid Sale amount.");
                     return;
                 }
 
@@ -216,7 +211,6 @@ namespace POSales
                 {
                     // If not, set the default value
                     txtChange.Text = "0.00";
-                    Debug.WriteLine("Invalid Cash amount.");
                     return;
                 }
 
@@ -225,20 +219,13 @@ namespace POSales
 
                 // Display the change in the txtChange text box
                 txtChange.Text = Change.ToString("#,##0.00");
-
-                // Debug output for calculated change
-                Debug.WriteLine($"Calculated Change: {Change}");
             }
             catch (Exception ex)
             {
                 // If an exception occurs, display a default value of "0.00" in the txtChange text box
                 txtChange.Text = "0.00";
-                Debug.WriteLine($"Exception: {ex.Message}");
             }
         }
-
-
-
 
         private void ShowMessageBox(string message)
         {
@@ -251,8 +238,6 @@ namespace POSales
                 MessageBox.Show(message);
             }
         }
-
-
 
         private void SettlePaymentModule_KeyDown(object sender, KeyEventArgs e)
         {

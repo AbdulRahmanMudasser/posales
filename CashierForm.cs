@@ -32,7 +32,7 @@ namespace POSales
 
         string id;
 
-        bool hasCart = false;
+        public static bool hasCart = false;
 
         public CashierForm()
         {
@@ -149,6 +149,8 @@ namespace POSales
         private void btnDailySales_Click(object sender, EventArgs e)
         {
             slider(btnDailySales);
+
+            loadDailySales();
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -189,6 +191,13 @@ namespace POSales
 
         #endregion buttons
         
+        /// LOAD DAILY SALES MODULE
+        private void loadDailySales()
+        {
+            DailyReportForm dailyReport = new DailyReportForm();
+
+            dailyReport.ShowDialog();
+        }
         
         /// SETTLE PAYMENT
         private void settlePaymentModule()
