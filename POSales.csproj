@@ -73,6 +73,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DailyReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DailyReportForm.Designer.cs">
+      <DependentUpon>DailyReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductStockIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DailyReportForm.resx">
+      <DependentUpon>DailyReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductStockIn.resx">
       <DependentUpon>ProductStockIn.cs</DependentUpon>
