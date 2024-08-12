@@ -1,6 +1,6 @@
 ﻿namespace POSales
 {
-    partial class CashierLookUpProducts
+    partial class LookUpProducts
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashierLookUpProducts));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LookUpProducts));
             this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picClose = new System.Windows.Forms.PictureBox();
@@ -178,7 +178,6 @@
             this.txtSearchProduct.MaxLength = 32767;
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.PasswordChar = '\0';
-            this.txtSearchProduct.PromptText = "Search Products";
             this.txtSearchProduct.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchProduct.SelectedText = "";
             this.txtSearchProduct.SelectionLength = 0;

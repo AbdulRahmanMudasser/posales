@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace POSales
 {
-    public partial class CashierLookUpProducts : Form
+    public partial class LookUpProducts : Form
     {
         /// HANDLE THE CONNECTION TO DATABASE
         SqlConnection connection = new SqlConnection();
@@ -28,7 +28,7 @@ namespace POSales
         /// CASHIER FORM
         CashierForm cashierForm;
 
-        public CashierLookUpProducts(CashierForm cashierForm)
+        public LookUpProducts(CashierForm cashierForm)
         {
             InitializeComponent();
 

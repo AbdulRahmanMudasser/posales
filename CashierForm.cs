@@ -90,7 +90,7 @@ namespace POSales
             slider(btnSearchProduct);
 
             // Initialize CashierLookUpProducts Window
-            CashierLookUpProducts lookUpProducts = new CashierLookUpProducts(this);
+            LookUpProducts lookUpProducts = new LookUpProducts(this);
 
             // Load Products Into LookUpProducts
             lookUpProducts.loadProducts();
@@ -195,6 +195,8 @@ namespace POSales
         private void loadDailySales()
         {
             DailyReportForm dailyReport = new DailyReportForm();
+
+            dailyReport.soldUser = lblCashierName.Text;
 
             dailyReport.ShowDialog();
         }

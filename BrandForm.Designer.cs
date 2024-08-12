@@ -145,7 +145,6 @@
             this.txtSearchBrand.MaxLength = 32767;
             this.txtSearchBrand.Name = "txtSearchBrand";
             this.txtSearchBrand.PasswordChar = '\0';
-            this.txtSearchBrand.PromptText = "Search Brand";
             this.txtSearchBrand.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearchBrand.SelectedText = "";
             this.txtSearchBrand.SelectionLength = 0;

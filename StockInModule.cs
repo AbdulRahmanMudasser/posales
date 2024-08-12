@@ -182,7 +182,7 @@ namespace POSales
 
         private void btnBrowseProducts_Click(object sender, EventArgs e)
         {
-            ProductStockIn productStockIn = new ProductStockIn(this);
+            StockEntryModule productStockIn = new StockEntryModule(this);
 
             productStockIn.ShowDialog();
         }
