@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace POSales
 {
-    public partial class ProductStockIn : Form
+    public partial class StockEntryModule : Form
     {
         /// HANDLE THE CONNECTION TO DATABASE
         SqlConnection connection = new SqlConnection();
@@ -28,7 +28,7 @@ namespace POSales
         /// STOCK IN FORM
         StockInModule stockInModule;
 
-        public ProductStockIn(StockInModule stockInModule)
+        public StockEntryModule(StockInModule stockInModule)
         {
             InitializeComponent();
 

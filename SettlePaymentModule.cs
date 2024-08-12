@@ -220,7 +220,7 @@ namespace POSales
                 // Display the change in the txtChange text box
                 txtChange.Text = Change.ToString("#,##0.00");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // If an exception occurs, display a default value of "0.00" in the txtChange text box
                 txtChange.Text = "0.00";

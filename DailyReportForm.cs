@@ -25,6 +25,8 @@ namespace POSales
         /// TO READ DATA RETRIEVED FROM DATABASE
         SqlDataReader dataReader;
 
+        public string soldUser;
+
         public DailyReportForm()
         {
             InitializeComponent();
@@ -72,46 +74,6 @@ namespace POSales
                 MessageBox.Show("An Unexpected Exception Has Occurred While Loading Cashier " + ex.Message);
             }
         }
-
-        /// LOAD SOLD ITEMS BY CASHIER
-        //private void loadSold()
-        //{
-        //    int i = 0;
-
-        //    dgvCashier.Rows.Clear();
-
-        //    connection.Open();
-
-        //    if (cboCashier.Text == "All Cashier")
-        //    {
-        //        sqlCommand = new SqlCommand("SELECT c.id, c.transactionNumber, c.productCode, p.description, c.price, c.quantity, c.discountAmount, c.total FROM tbCart as c INNER JOIN tbProduct AS p ON c.productCode = p.productCode WHERE status LIKE 'Sold' BETWEEN @dateFrom AND @dateTo", connection);
-
-        //        sqlCommand.Parameters.AddWithValue("@dateFrom", dtpFrom.Value);
-        //        sqlCommand.Parameters.AddWithValue("@dateTo", dtpTo.Value);
-        //    }
-
-        //    else
-        //    {
-        //        sqlCommand = new SqlCommand("SELECT c.id, c.transactionNumber, c.productCode, p.description, c.price, c.quantity, c.discountAmount, c.total FROM tbCart as c INNER JOIN tbProduct AS p ON c.productCode = p.productCode WHERE status LIKE 'Sold' BETWEEN @dateFrom AND @dateTo AND cashier LIKE @cashier", connection);
-
-        //        sqlCommand.Parameters.AddWithValue("@dateFrom", dtpFrom.Value);
-        //        sqlCommand.Parameters.AddWithValue("@dateTo", dtpTo.Value);
-        //        sqlCommand.Parameters.AddWithValue("@cashier", cboCashier.Text);
-        //    }
-
-        //    dataReader = sqlCommand.ExecuteReader();
-
-        //    while (dataReader.Read())
-        //    {
-        //        i++;
-
-        //        dgvCashier.Rows.Add(i, dataReader["id"].ToString(), dataReader["transactionNumber"].ToString(), dataReader["productCode"].ToString(), dataReader["description"].ToString(), dataReader["price"].ToString(), dataReader["quantity"].ToString(), dataReader["discountAmount"].ToString(), dataReader["total"].ToString());
-        //    }
-
-        //    dataReader.Close();
-
-        //    connection.Close();
-        //}
 
         private void loadSold()
         {
@@ -195,6 +157,29 @@ namespace POSales
             if (e.KeyCode == Keys.Escape)
             {
                 this.Dispose();
+            }
+        }
+
+        private void dgvCashier_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string columnName = dgvCashier.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "View")
+            {
+                CancelOrderForm cancelOrderForm = new CancelOrderForm();
+
+                cancelOrderForm.txtId.Text = dgvCashier.Rows[e.RowIndex].Cells[1].Value.ToString();
+                cancelOrderForm.txtTransactionNumber.Text = dgvCashier.Rows[e.RowIndex].Cells[2].Value.ToString();
+                cancelOrderForm.txtProductCode.Text = dgvCashier.Rows[e.RowIndex].Cells[3].Value.ToString();
+                cancelOrderForm.txtDescription.Text = dgvCashier.Rows[e.RowIndex].Cells[4].Value.ToString();
+                cancelOrderForm.txtPrice.Text = dgvCashier.Rows[e.RowIndex].Cells[5].Value.ToString();
+                cancelOrderForm.txtQuantity.Text = dgvCashier.Rows[e.RowIndex].Cells[6].Value.ToString();
+                cancelOrderForm.txtDiscount.Text = dgvCashier.Rows[e.RowIndex].Cells[7].Value.ToString();
+                cancelOrderForm.txtTotal.Text = dgvCashier.Rows[e.RowIndex].Cells[8].Value.ToString();
+
+                cancelOrderForm.txtCancelledBy.Text = soldUser;
+
+                cancelOrderForm.ShowDialog();
             }
         }
     }
