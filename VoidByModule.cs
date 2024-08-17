@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
 
 namespace POSales
 {
@@ -27,7 +19,7 @@ namespace POSales
         /// TO READ DATA RETRIEVED FROM DATABASE
         SqlDataReader dataReader;
 
-        CancelOrderForm cancelOrderForm = new CancelOrderForm();
+        CancelOrderForm cancelOrderForm;
 
         public VoidByModule(CancelOrderForm cancelOrderForm)
         {
@@ -59,8 +51,6 @@ namespace POSales
                 if (txtUsername.Text.ToLower() == cancelOrderForm.txtCancelledBy.Text.ToLower())
                 {
                     MessageBox.Show("Void By & Cancelled By Name Are Same\n\nPlease Void By Another Person", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    return;
                 }
 
                 string user;
@@ -86,7 +76,7 @@ namespace POSales
                 // Check If The Data Reader Has Rows (User Found)
                 if (dataReader.HasRows)
                 {
-                    user = dataReader["name"].ToString();
+                    user = dataReader["fullName"].ToString();
 
                     // Close The Data Reader
                     dataReader.Close();
@@ -98,21 +88,25 @@ namespace POSales
 
                     if (cancelOrderForm.cboAddToInventory.Text == "Yes")
                     {
-                        string innerQuery = "UPDATE tbProduct SET quantity = @quantity WHERE productCode = @productCode";
+                        string innerQuery = "UPDATE tbProduct SET quantity = quantity + @quantity WHERE productCode = @productCode";
+
                         string innerExceptionTitle = "Updating Product Quantity";
 
-                        connectionClass.ExecuteQueryWithTwoParameters(innerQuery, innerExceptionTitle, "quantity", cancelOrderForm.txtQuantity.Text, "productCode", cancelOrderForm.txtProductCode.Text);
+                        connectionClass.ExecuteQueryWithTwoParameters(innerQuery, innerExceptionTitle, "quantity", cancelOrderForm.txtCancelQuantity.Text, "productCode", cancelOrderForm.txtProductCode.Text);
                     }
 
-                    string query = "UPDATE tbCart SET quantity = @quantity WHERE id = @id";
+                    string query = "UPDATE tbCart SET quantity = quantity - @quantity WHERE id = @id";
+
                     string exceptionTitle = "Updating Product Quantity";
 
-                    connectionClass.ExecuteQueryWithTwoParameters(query, exceptionTitle, "quantity", cancelOrderForm.txtQuantity.Text, "productCode", cancelOrderForm.txtId.Text);
+                    connectionClass.ExecuteQueryWithTwoParameters(query, exceptionTitle, "quantity", cancelOrderForm.txtCancelQuantity.Text, "id", cancelOrderForm.txtId.Text);
 
                     MessageBox.Show("Order Transaction Successfully Cancelled\n\nCancel Order", "POSales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Dispose();
 
+                    cancelOrderForm.reloadSoldList();
+                    
                     cancelOrderForm.Dispose();
                 }
 
@@ -152,7 +146,7 @@ namespace POSales
                 sqlCommand.Parameters.AddWithValue("@productCode", cancelOrderForm.txtProductCode.Text);
 
                 // Add Price Parameter To The SQL Query
-                sqlCommand.Parameters.AddWithValue("@price", cancelOrderForm.txtProductCode.Text);
+                sqlCommand.Parameters.AddWithValue("@price", double.Parse(cancelOrderForm.txtPrice.Text));
 
                 // Add Total Parameter To The SQL Query
                 sqlCommand.Parameters.AddWithValue("@total", double.Parse(cancelOrderForm.txtTotal.Text));
@@ -191,7 +185,7 @@ namespace POSales
                 }
 
                 // Display Error Message To The User About The Exception
-                MessageBox.Show("An Unexpected Exception Has Occurred While Confirming Credentials: " + ex.Message);
+                MessageBox.Show("An Unexpected Exception Has Occurred While Saving Cancel Order: " + ex.Message);
             }
         }
     }

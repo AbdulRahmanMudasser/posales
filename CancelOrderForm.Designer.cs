@@ -372,9 +372,9 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(501, 441);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(158, 21);
+            this.label17.Size = new System.Drawing.Size(170, 21);
             this.label17.TabIndex = 27;
-            this.label17.Text = "Cancel Quantity";
+            this.label17.Text = "Cancel Quantity *";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtVoidBy
@@ -431,9 +431,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(28, 441);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 21);
+            this.label12.Size = new System.Drawing.Size(106, 21);
             this.label12.TabIndex = 44;
-            this.label12.Text = "Reason(s)";
+            this.label12.Text = "Reason(s) *";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnCancelOrder
@@ -463,6 +463,7 @@
             this.cboAddToInventory.Name = "cboAddToInventory";
             this.cboAddToInventory.Size = new System.Drawing.Size(220, 29);
             this.cboAddToInventory.TabIndex = 47;
+            this.cboAddToInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboAddToInventory_KeyPress);
             // 
             // CancelOrderForm
             // 
@@ -535,7 +536,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtCancelQuantity;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
@@ -554,5 +554,6 @@
         public System.Windows.Forms.TextBox txtVoidBy;
         public System.Windows.Forms.TextBox txtReason;
         public System.Windows.Forms.ComboBox cboAddToInventory;
+        public System.Windows.Forms.TextBox txtCancelQuantity;
     }
 }

@@ -75,7 +75,7 @@ namespace POSales
             }
         }
 
-        private void loadSold()
+        public void loadSold()
         {
             int i = 0;
 
@@ -166,7 +166,7 @@ namespace POSales
 
             if (columnName == "View")
             {
-                CancelOrderForm cancelOrderForm = new CancelOrderForm();
+                CancelOrderForm cancelOrderForm = new CancelOrderForm(this);
 
                 cancelOrderForm.txtId.Text = dgvCashier.Rows[e.RowIndex].Cells[1].Value.ToString();
                 cancelOrderForm.txtTransactionNumber.Text = dgvCashier.Rows[e.RowIndex].Cells[2].Value.ToString();
