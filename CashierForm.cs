@@ -685,7 +685,7 @@ namespace POSales
                         string query = "UPDATE tbCart SET quantity = quantity + @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
 
                         // Execute Query
-                        connectionClass.executeQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+                        connectionClass.ExecuteQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
 
                         // Load Cart
                         loadCart();
@@ -707,7 +707,7 @@ namespace POSales
                             string queryInternal = "UPDATE tbCart SET quantity = quantity + @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
 
                             // Execute Query
-                            connectionClass.executeQueryWithThreeParameters(queryInternal, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+                            connectionClass.ExecuteQueryWithThreeParameters(queryInternal, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
 
                             // Load Cart
                             loadCart();
@@ -745,7 +745,7 @@ namespace POSales
                         string query = "UPDATE tbCart SET quantity = quantity - @quantity WHERE transactionNumber LIKE @transactionNumber AND productCode LIKE @productCode";
 
                         // Execute Query
-                        connectionClass.executeQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
+                        connectionClass.ExecuteQueryWithThreeParameters(query, "Incrementing Product", "quantity", int.Parse(txtBarcodeQuantity.Text), "transactionNumber", lblTransactionNumberActual.Text, "productCode", dgvCart.Rows[e.RowIndex].Cells[2].Value.ToString());
 
                         // Load Cart
                         loadCart();
@@ -764,7 +764,7 @@ namespace POSales
                             string query = "DELETE FROM tbCart WHERE id LIKE @id";
 
                             // Execute Query
-                            connectionClass.executeQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
+                            connectionClass.ExecuteQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
 
                             // Load Cart
                             loadCart();
@@ -800,7 +800,7 @@ namespace POSales
                     string query = "DELETE FROM tbCart WHERE id LIKE @id";
 
                     // Execute Query
-                    connectionClass.executeQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    connectionClass.ExecuteQuery(query, "Removing Product", "id", dgvCart.Rows[e.RowIndex].Cells[1].Value.ToString());
 
                     // Load Cart
                     loadCart();
