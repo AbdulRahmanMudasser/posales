@@ -16,7 +16,7 @@ namespace POSales
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VoidByModule());
+            Application.Run(new LoginForm());
         }
     }
 }
